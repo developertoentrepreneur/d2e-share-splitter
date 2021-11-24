@@ -1,6 +1,6 @@
 COVERAGE = 0
 DOCKER_LOCAL = -f local.yml
-CONTAINER_BACKEND = sharesplitter_backend
+CONTAINER_BACKEND = django
 
 ifeq (${COVERAGE}, 1)
 COVERAGE_CONFIG = --cov --cov-config=.coveragerc
@@ -15,7 +15,6 @@ db-migrate:
 local:
 	# start develop environment
 	docker-compose $(DOCKER_LOCAL) up ${ARGS}
-
 
 local-build:
 	# build docker images of the develop environment
