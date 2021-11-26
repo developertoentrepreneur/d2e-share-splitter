@@ -14,9 +14,6 @@ urlpatterns = [
     path("~redirect/", view=user_redirect_view, name="redirect"),
     path("~update/", view=user_update_view, name="update"),
     path("<str:username>/", view=user_detail_view, name="detail"),
-]
-
-urlpatterns = [
     # Django Ajax CRUD Operations
     path("users/", UsersView.as_view(), name="list_users"),
     path("users/log", UsersLog.as_view(), name="log_users"),

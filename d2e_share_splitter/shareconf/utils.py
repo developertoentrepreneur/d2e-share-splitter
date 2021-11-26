@@ -1,5 +1,4 @@
-from sharecontributions.models import Contribution
-
+from d2e_share_splitter.sharecontributions.models import Contribution
 from d2e_share_splitter.users.models import UserPie
 
 
