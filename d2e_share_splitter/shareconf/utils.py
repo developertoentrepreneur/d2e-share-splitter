@@ -1,5 +1,6 @@
 from sharecontributions.models import Contribution
-from shareusers.models import UserPie
+
+from d2e_share_splitter.users.models import UserPie
 
 
 def update_pie_slices():

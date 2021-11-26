@@ -3,7 +3,10 @@ from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from d2e_share_splitter.users.forms import UserChangeForm, UserCreationForm
+from d2e_share_splitter.users.forms import UserChangeForm
+from d2e_share_splitter.users.forms import UserCreationForm
+from d2e_share_splitter.users.models import UserLog
+from d2e_share_splitter.users.models import UserPie
 
 User = get_user_model()
 
@@ -32,3 +35,7 @@ class UserAdmin(auth_admin.UserAdmin):
     )
     list_display = ["username", "name", "is_superuser"]
     search_fields = ["name"]
+
+
+admin.site.register(UserPie)
+admin.site.register(UserLog)

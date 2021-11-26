@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 from django.db.models import CharField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -20,3 +21,23 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class UserPie(models.Model):
+    name = models.CharField(max_length=1024)
+    email = models.EmailField()
+    jobTitle = models.CharField(max_length=1024)
+    yearSalary = models.IntegerField(default=0)
+    well = models.FloatField(default=0)
+    slices = models.FloatField(default=0)
+
+
+class UserLog(models.Model):
+    date = models.DateField()
+    type = models.CharField(max_length=1024, default="creation")
+    user = models.CharField(max_length=1024)
+    # no ForeignKey to keep tracability
+    # user = models.ForeignKey(UserPie,
+    #                          on_delete=models.SET_NULL  ,
+    #                          )
+    details = models.CharField(max_length=1024)
