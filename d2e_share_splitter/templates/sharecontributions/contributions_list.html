@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contribution List{% endblock %}
+f
+{% block content %}
+<div class="container">
+  <h1>Contributions</h1>
+  <div class="row">
+
+    <div class="col-md-8">
+      <button class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal1" )">New
+        contribution</button>
+      <table id="contribTable" class="table table-striped">
+        <tr>
+          <th>Team Member</th>
+          <th>Type of Contrib</th>
+          <th>Project type</th>
+          <th>Value</th>
+          <th>Hours Spent</th>
+          <th>Date</th>
+          <th>Details</th>
+          <th colspan="3">Slices</th>
+        </tr>
+        {% for contrib in contributions %}
+        <tr id="contrib-{{contrib.id}}">
+          <td name="name">{{contrib.user}}</td>
+          <td name="contribType">{{contrib.contribType}}</td>
+          <td name="projectType">{{contrib.projectType}}</td>
+          <td name="value">{{contrib.value}}</td>
+          <td name="hours">{{contrib.hours}}</td>
+          <td name="date">{{contrib.date}}</td>
+          <td name="details">{{contrib.details}}</td>
+          <td name="slices">{{contrib.slices}}</td>
+          <td align="center">
+            <button class="btn btn-danger form-control" onClick="deleteContrib({{contrib.id}})">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Create Contrib</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form id="addContrib" action="">
+          <div class="form-group" id="projDiv">
+            <label>Select project</label>
+            <select class="form-control" value="Time" name="projectType" placeholder="projectType" required>
+              {% for project in projects %}
+              <option value="{{project.name}}">{{project.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group" id="userDiv">
+            <label>User</label>
+            <select class="form-control" name="user" placeholder="User" required>
+              {% for user in shareusers %}
+              <option value="{{user.name}}">{{user.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group" id="contribDiv">
+            <label>Contribution type</label>
+            <select class="form-control" name="contribType" id="contribType" value="time" required>
+              <option value="" disabled selected>Select your option</option>
+              <option selected value="time">Time</option>
+              <option value="expenses">Expenses</option>
+            </select>
+          </div>
+          <div class="form-group" id="datess">
+            <!-- Date input -->
+            <label class="control-label" for="date">Date</label>
+            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" required />
+          </div>
+
+          <div class="form-group" id="expensesDiv">
+            <label>Expenses (in €)</label>
+            <input class="form-control" id="expenses" type="number" name="expenses" value="0" placeholder="Expenses">
+          </div>
+          <div class="form-group" id="hoursDiv">
+            <label>Time spent (in hours)</label>
+            <input class="form-control" value="0" id="hours" type="number" name="hours" placeholder="Hours">
+          </div>
+          <div class="form-group" id="descriptionDiv">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" value=" " rows="3"></textarea>
+          </div>
+          <alert id="helper" message=""></alert>
+          <button class="btn btn-primary form-control" type="submit">SUBMIT</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block javascript %}
+<script type="text/javascript">
+  var var_url_contrib_create = '{% url "sharecontributions:contrib_create" %}';
+  var var_url_contrib_delete = '{% url "sharecontributions:contrib_delete" %}';
+</script>
+<script src="{% static 'js/sharecontributions/contribslist.js' %}"></script>
+{% endblock javascript %}

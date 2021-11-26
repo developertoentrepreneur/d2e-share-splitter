@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Projects List{% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+  <h1>ShareSplitter Configuration</h1>
+  <div class="row">
+    <div id="sharechart" style="width: 900px; height: 500px;"></div>
+    <div class="col-md-4">
+
+      <table id="projTab" class="table table-striped">
+        <tr>
+          <th> Configuration</th>
+          <th> Value</th>
+        </tr>
+        {% for conf in shareconf %}
+        <tr id="conf-{{conf.id}}">
+          <td> Non Cash Multiplier</td>
+          <td class="projName projData" name="name">{{conf.nonCashMultiplier}}</td>
+        </tr>
+        <tr id="conf-{{conf.id}}">
+          <td> Cash Multiplier</td>
+          <td class="projName projData" name="name">{{conf.cashMultiplier}}</td>
+        </tr>
+        <tr id="conf-{{conf.id}}">
+          <td> Commission Rate</td>
+          <td class="projName projData" name="name">{{conf.commissionRate}}</td>
+        </tr>
+        <tr id="conf-{{conf.id}}">
+          <td> Inverstor Rate</td>
+          <td class="projName projData" name="name">{{conf.investorFinderRate}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+
+    </div>
+
+    <div class="col-md-4">
+
+      <table id="projTable" class="table table-striped">
+        <tr>
+          <th colspan="1">Projects</th>
+        </tr>
+        {% for proj in projects %}
+        <tr id="proj-{{proj.id}}">
+          <td class="projName projData" name="name">{{proj.name}}</td>
+          <td align="center">
+            <button class="btn btn-danger form-control" onClick="deleteProj({{proj.id}})">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <button class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" )">New Proj</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">New proj</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <form id="addProj" action="">
+        <div class="modal-body">
+          <input class="form-control" type="text" name="name" placeholder="Name" required>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="container">
+  <h1>Log in ad admin first</h1>
+  <a href='{% url "admin" %}'></a>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+
+
+{% block javascript %}
+<script type="text/javascript">
+  var var_url_proj_create = '{% url "shareconf:proj_create" %}';
+  var var_url_proj_delete = '{% url "shareconf:proj_delete" %}';
+  var users_data = [['Name', 'Slices']];
+  {% for user in users %}
+  users_data.push(['{{user.name}}', parseFloat('{{user.slices}}')]);
+  {% endfor %}
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{% static 'js/shareconf/shareconf.js' %}"></script>
+<script src="{% static 'js/shareconf/sharechart.js' %}"></script>
+{% endblock javascript %}
