@@ -41,7 +41,11 @@ class TestUserViewSet:
     def test_get_auth_token(self, api_client):
         user = UserFactory(username="alvaro", password="Qwertyui")
         url = reverse("auth-token")
-        data = {"username": user.username, "password": "Qwertyui"}
+        data = {
+            "username": user.username,
+            "password": "Qwertyui",
+            "middleware": "acaas",
+        }
         response = api_client.post(url, data)
         assert "token" in response.data.keys()
 
