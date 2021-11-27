@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.db import models
 from rest_framework import serializers
 
 from d2e_share_splitter.users.models import UserPie

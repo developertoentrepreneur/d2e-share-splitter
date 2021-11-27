@@ -1,10 +1,13 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.decorators import action
+from rest_framework.decorators import permission_classes
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.mixins import ListModelMixin
 from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.mixins import UpdateModelMixin
+from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -34,6 +37,7 @@ class UserViewSet(
 
 
 class UserRetrieveUpdateView(RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = UserPie.objects.all()
-    serialzer_class = UserPieSerializer
-    lookup_field = "user_pk"
+    serializer_class = UserPieSerializer
+    lookup_url_kwarg = "user_pk"
