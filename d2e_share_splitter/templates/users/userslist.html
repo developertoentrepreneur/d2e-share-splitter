@@ -40,7 +40,11 @@
         {% endfor %}
       </table>
       <button class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal1" )">New User</button>
-      <a href='{% url "shareusers:log_users" %}'>Check log</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userFormModal">
+        Launch demo modal
+      </button>
+
+      <a href='{% url "users:log_users" %}'>Check log</a>
     </div>
   </div>
 </div>
@@ -54,6 +58,7 @@
         <h4 class="modal-title" id="myModalLabel">Create User</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
+
       </div>
       <div class="modal-body">
         <form id="addUser" action="">
@@ -71,6 +76,7 @@
               required>
           </div>
           <button class="btn btn-primary form-control" type="submit">SUBMIT</button>
+
         </form>
       </div>
     </div>
@@ -106,15 +112,17 @@
     </div>
   </div>
 </div>
+{% include "users/user_form_modal.html" with form=form %}
+
 {% endblock %}
 
 
 
 {% block javascript %}
 <script type="text/javascript">
-  var var_url_user_create = '{% url "shareusers:user_create" %}';
-  var var_url_user_delete = '{% url "shareusers:user_delete" %}';
-  var var_url_user_update = '{% url "shareusers:user_update" %}'
+  var var_url_user_create = '{% url "users:user_create" %}';
+  var var_url_user_delete = '{% url "users:user_delete" %}';
+  var var_url_user_update = '{% url "users:user_update" %}'
 </script>
 <script src="{% static 'js/shareusers/userslist.js' %}"></script>
 {% endblock javascript %}

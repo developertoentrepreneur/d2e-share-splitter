@@ -7,6 +7,8 @@ from django.views.generic import DetailView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
 
+from d2e_share_splitter.users.forms import FormUser
+
 User = get_user_model()
 
 
@@ -66,16 +68,17 @@ from d2e_share_splitter.users.models import UserPie
 class UsersLog(LoginRequiredMixin, ListView):
     """docstring forBacktestList."""
 
-    template_name = "shareusers/userslog.html"
+    template_name = "users/userslog.html"
     model = UserLog
 
 
 class UsersView(LoginRequiredMixin, TemplateView):
-    template_name = "shareusers/userslist.html"
+    template_name = "users/userslist.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["users"] = UserPie.objects.all()
+        context["form"] = FormUser()
         return context
 
 
