@@ -2,10 +2,11 @@ from typing import Any
 from typing import Sequence
 
 from django.contrib.auth import get_user_model
-from factory import Factory
 from factory import Faker
 from factory import post_generation
 from factory.django import DjangoModelFactory
+
+from d2e_share_splitter.users.models import UserPie
 
 
 class UserFactory(DjangoModelFactory):
@@ -35,10 +36,7 @@ class UserFactory(DjangoModelFactory):
         django_get_or_create = ["username"]
 
 
-from d2e_share_splitter.users.models import UserPie
-
-
-class UserFactory(Factory):
+class UserPieFactory(DjangoModelFactory):
     class Meta:
         model = UserPie
 

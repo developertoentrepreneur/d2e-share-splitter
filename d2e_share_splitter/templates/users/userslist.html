@@ -52,36 +52,8 @@
 
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Update User</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
 
-      </div>
-      <form id="updateUser" action="">
-        <div class="modal-body">
-          <input class="form-control" id="form-id" type="hidden" name="formId" />
-          <label for="name">Name</label>
-          <input class="form-control" id="form-name" type="text" name="formName" />
-          <label for="email">Email</label>
-          <input class="form-control" id="form-email" type="email" name="formEmail" />
-          <label for="jobTitle">JobTitle</label>
-          <input class="form-control" id="form-jobTitle" type="text" name="formJobTitle" />
-          <label for="yearSalary">YearSalary</label>
-          <input class="form-control" id="form-yearSalary" type="number" name="formYearSalary" min=12000 max=200000 />
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-{% include "users/user_form_modal.html" with form=form %}
+{% include "users/user_form_modal.html" with form=form, %}
 
 {% endblock %}
 

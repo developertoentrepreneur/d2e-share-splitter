@@ -20,3 +20,6 @@ local-build:
 	# build docker images of the develop environment
 	# add environment COMPOSE_DOCKER_CLI_BUILD and DOCKER_BUILDKIT to use the new docker build image engine
 	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose $(DOCKER_LOCAL) build ${ARGS}
+
+test-all:
+	docker exec -it $(CONTAINER_BACKEND) bash -c "pytest ${APP} -svv --reuse-db ${COVERAGE_CONFIG} --ds=config.settings.test"

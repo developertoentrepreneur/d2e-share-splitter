@@ -1,4 +1,5 @@
 import pytest
+from rest_framework.test import APIClient
 
 from d2e_share_splitter.users.models import User
 from d2e_share_splitter.users.tests.factories import UserFactory
@@ -12,3 +13,9 @@ def media_storage(settings, tmpdir):
 @pytest.fixture
 def user() -> User:
     return UserFactory()
+
+
+@pytest.fixture()
+def api_client():
+    print("\nCREATE SESSION FIXTURE : client")
+    return APIClient()

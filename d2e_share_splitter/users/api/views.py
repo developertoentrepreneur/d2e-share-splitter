@@ -1,16 +1,24 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.mixins import UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
+from d2e_share_splitter.users.models import UserPie
+
+from .serializers import UserPieSerializer
 from .serializers import UserSerializer
 
 User = get_user_model()
 
 
-class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
+class UserViewSet(
+    RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet
+):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     lookup_field = "username"
@@ -23,3 +31,9 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
     def me(self, request):
         serializer = UserSerializer(request.user, context={"request": request})
         return Response(status=status.HTTP_200_OK, data=serializer.data)
+
+
+class UserRetrieveUpdateView(RetrieveUpdateAPIView):
+    queryset = UserPie.objects.all()
+    serialzer_class = UserPieSerializer
+    lookup_field = "user_pk"
