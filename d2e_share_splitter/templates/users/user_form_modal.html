@@ -1,4 +1,6 @@
+{% load static %}
 {% load crispy_forms_tags %}
+{% load rest_framework %}
 
 
 <div class="modal fade" id="userFormModalUpdate" tabindex="-1" aria-labelledby="userFormModalLabel" aria-hidden="true">
@@ -9,10 +11,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formUser" action="/users/create/" method="post">
+                {%if form %}
+                <form id="formUser" action="{% url 'users:user_create'%}" method="post">
                     {% csrf_token %}
                     {{ form|crispy }}
                 </form>
+                {% elif serializer %}
+                <form id="formUser" action="{% url 'users:retrieve-update' user_pk=user.pk %}" method="patch">
+                    {% csrf_token %}
+                    {% render_form serializer %}
+                </form>
+                {% endif %}
             </div>
             <div class="modal-footer d-flex justify-content-center ">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

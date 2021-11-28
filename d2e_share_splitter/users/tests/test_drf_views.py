@@ -2,8 +2,10 @@ import pytest
 from django.test import RequestFactory
 from django.urls import reverse
 
+from d2e_share_splitter.users.api.serializers import UserPieSerializer
 from d2e_share_splitter.users.api.views import UserViewSet
 from d2e_share_splitter.users.models import User
+from d2e_share_splitter.users.models import UserPie
 from d2e_share_splitter.users.tests.factories import UserFactory
 from d2e_share_splitter.users.tests.factories import UserPieFactory
 from d2e_share_splitter.users.utils import create_admin_user
@@ -37,7 +39,7 @@ class TestUserViewSet:
         }
 
 
-class TestUserViewSet:
+class TestUserView:
     def test_get_auth_token(self, api_client):
         user = UserFactory(username="alvaro", password="Qwertyui")
         url = reverse("auth-token")
@@ -54,11 +56,10 @@ class TestUserViewSet:
         url = reverse("users:retrieve-update", kwargs={"user_pk": user_pie.pk})
         api_client.force_authenticate(user)
         response = api_client.get(url)
-        data_keys = response.data.keys()
-        assert "name" in data_keys
-        assert "jobTitle" in data_keys
-        assert "email" in data_keys
-        assert "yearSalary" in data_keys
+        user_obj = response.data.get("user")
+        serializer_obj = response.data.get("serializer")
+        assert isinstance(user_obj, UserPie)
+        assert isinstance(serializer_obj, UserPieSerializer)
 
     def test_update_user_pie(self, api_client, user):
         params = {"name": "Pedro"}
