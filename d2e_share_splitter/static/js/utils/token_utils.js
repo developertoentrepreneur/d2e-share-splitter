@@ -17,3 +17,9 @@ function loginAndStoreToken(formId, loginUrl) {
 function storeToken(data) {
   localStorage.setItem("Token", data);
 }
+
+function getTokenHeaders(data) {
+  let token = localStorage.getItem("Token");
+  let headers = { Authorization: `Token ${token}` };
+  return headers;
+}

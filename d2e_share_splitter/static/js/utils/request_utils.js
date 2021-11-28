@@ -3,8 +3,8 @@ function performRequest(url, type, data) {
     $.ajax({
       url: url,
       type: type,
+      headers: getTokenHeaders(),
       data: data,
-      dataType: "json",
       success: function (data) {
         resolve(data);
       },

@@ -27,7 +27,7 @@ urlpatterns_api = [
     path(
         "pie/<int:user_pk>/",
         UserRetrieveUpdateView.as_view(),
-        name="retrieve-update",
+        name="form",
     ),
 ]
 

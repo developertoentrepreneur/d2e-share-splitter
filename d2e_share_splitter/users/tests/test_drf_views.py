@@ -53,7 +53,7 @@ class TestUserView:
 
     def test_get_queryset(self, api_client, user):
         user_pie = UserPieFactory()
-        url = reverse("users:retrieve-update", kwargs={"user_pk": user_pie.pk})
+        url = reverse("users:form", kwargs={"user_pk": user_pie.pk})
         api_client.force_authenticate(user)
         response = api_client.get(url)
         user_obj = response.data.get("user")
@@ -64,7 +64,7 @@ class TestUserView:
     def test_update_user_pie(self, api_client, user):
         params = {"name": "Pedro"}
         user_pie = UserPieFactory()
-        url = reverse("users:retrieve-update", kwargs={"user_pk": user_pie.pk})
+        url = reverse("users:form", kwargs={"user_pk": user_pie.pk})
         api_client.force_authenticate(user)
         response = api_client.patch(url, params)
         assert response.status_code == 200

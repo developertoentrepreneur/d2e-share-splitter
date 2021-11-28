@@ -17,7 +17,7 @@
                     {{ form|crispy }}
                 </form>
                 {% elif serializer %}
-                <form id="formUser" action="{% url 'users:retrieve-update' user_pk=user.pk %}" method="patch">
+                <form id="formUser" action="{% url 'users:form' user_pk=user.pk %}" method="patch">
                     {% csrf_token %}
                     {% render_form serializer %}
                 </form>
