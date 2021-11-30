@@ -41,7 +41,7 @@ class UserViewSet(
 class UserRetrieveUpdateView(RetrieveUpdateAPIView):
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [IsAuthenticated]
-    template_name = "users/user_form_modal.html"
+    template_name = "users/modals/user_modal_update.html"
     queryset = UserPie.objects.all()
     serializer_class = UserPieSerializer
     lookup_url_kwarg = "user_pk"

@@ -1,5 +1,4 @@
 {% load static %}
-{% load crispy_forms_tags %}
 {% load rest_framework %}
 
 
@@ -7,21 +6,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="userFormModalLabel">Create New user</h5>
+                <h5 class="modal-title" id="userFormModalLabel">Update existing user</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {%if form %}
-                <form id="formUser" action="{% url 'users:user_create'%}" method="post">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                </form>
-                {% elif serializer %}
                 <form id="formUser" action="{% url 'users:form' user_pk=user.pk %}" method="patch">
                     {% csrf_token %}
                     {% render_form serializer %}
                 </form>
-                {% endif %}
             </div>
             <div class="modal-footer d-flex justify-content-center ">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

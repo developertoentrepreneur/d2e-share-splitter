@@ -25,7 +25,7 @@
           <td class="userJobTitle userData" name="jobTitle">{{user.jobTitle}}</td>
           <td class="userYearSalary userData" name="yearSalary">{{user.yearSalary}}</td>
           <td name="slices">{{user.slices}}</td>
-          <td>
+          <td id="buttons{{user.id}}">
             <button class="btn btn-success form-control" onClick="getUserForm({{user.id}})" data-toggle="modal"
               data-target="#myModal" )>
               <!-- <span class="glyphicon glyphicon-pencil"></span> -->
@@ -40,7 +40,8 @@
         </tr>
         {% endfor %}
       </table>
-      <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#userFormModal">
+      <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal"
+        data-bs-target="#modalUserCreate">
         New User
       </button>
       <br>
@@ -53,8 +54,9 @@
 
 
 
-
-{% include "users/user_form_modal.html" with form=form serializer=serializer user=user %}
+{% include "users/modals/user_modal_create.html" with form=form %}
+<div id="modalsContainer">
+</div>
 
 {% endblock %}
 

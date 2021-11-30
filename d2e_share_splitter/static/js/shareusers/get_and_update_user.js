@@ -2,11 +2,14 @@ function getUserForm(id) {
   let url = url_user_form.replace("0000", id);
   getRequest(url).then(
     (response) => {
-      console.log(response);
+      $("#modalsContainer").html(response);
+      console.log("userFormModalUpdate");
+      var modalUpdate = new bootstrap.Modal(
+        document.getElementById("userFormModalUpdate")
+      );
+      modalUpdate.show();
     },
     (error) => {
-      console.log("error");
-      console.log(error);
       alert(error);
     }
   );
