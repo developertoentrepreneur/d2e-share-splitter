@@ -125,7 +125,9 @@
 
   </div> <!-- /container -->
 
-  {% block modal %}{% endblock modal %}
+  {% block modal %}
+  {% include "atoms/modals/modal_loading.html" %}
+  {% endblock modal %}
 
   {% block inline_javascript %}
   {% comment %}

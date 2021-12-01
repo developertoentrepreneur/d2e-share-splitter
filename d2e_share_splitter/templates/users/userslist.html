@@ -28,7 +28,6 @@
           <td id="buttons{{user.id}}">
             <button class="btn btn-success form-control" onClick="getUserForm({{user.id}})" data-toggle="modal"
               data-target="#myModal" )>
-              <!-- <span class="glyphicon glyphicon-pencil"></span> -->
               <i class="bi bi-pencil"></i>
             </button>
           </td>
@@ -55,6 +54,7 @@
 
 
 {% include "users/modals/user_modal_create.html" with form=form %}
+
 <div id="modalsContainer">
 </div>
 
