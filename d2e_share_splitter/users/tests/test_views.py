@@ -11,11 +11,9 @@ from django.urls import reverse
 from d2e_share_splitter.users.forms import UserChangeForm
 from d2e_share_splitter.users.models import User
 from d2e_share_splitter.users.tests.factories import UserFactory
-from d2e_share_splitter.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from d2e_share_splitter.users.views import UserRedirectView
+from d2e_share_splitter.users.views import UserUpdateView
+from d2e_share_splitter.users.views import user_detail_view
 
 pytestmark = pytest.mark.django_db
 

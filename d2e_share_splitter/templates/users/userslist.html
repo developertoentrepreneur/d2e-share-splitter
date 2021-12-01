@@ -32,7 +32,8 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-danger form-control" onClick="deleteUser({{user.id}})">
+            <button class="btn btn-danger form-control" onClick="deleteUser({{user.id}}, `{{user.email}}`)"
+              data-bs-toggle="modal" data-bs-target="#modalUserDelete">
               <i class="bi bi-trash"></i>
             </button>
           </td>
@@ -54,6 +55,7 @@
 
 
 {% include "users/modals/user_modal_create.html" with form=form %}
+{% include "users/modals/user_modal_delete.html" with form=form %}
 
 <div id="modalsContainer">
 </div>
@@ -64,11 +66,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  var url_user_create = '{% url "users:user_create" %}';
-  var url_user_delete = '{% url "users:user_delete" %}';
-  var url_user_update = '{% url "users:user_update" %}';
   var url_user_form = '{% url "users:form" "0000" %}'
 </script>
 <script src="{% static 'js/shareusers/userslist.js' %}"></script>
-<script src="{% static 'js/shareusers/get_and_update_user.js' %}"></script>
 {% endblock javascript %}

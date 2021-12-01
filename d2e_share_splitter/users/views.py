@@ -13,7 +13,7 @@ from django.views.generic import RedirectView
 from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic import View
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 
 from d2e_share_splitter.users.forms import FormUser
 from d2e_share_splitter.users.models import UserLog
@@ -75,15 +75,9 @@ class CreateUser(CreateView):
     success_url = reverse_lazy("users:list_users")
 
 
-class DeleteUser(View):
-    def get(self, request):
-        id1 = request.GET.get("id", None)
-        obj = UserPie.objects.get(id=id1)
-        createLog(str(obj.name), "delete", "User deleted")
-        obj.delete()
-        data = {"deleted": True}
-
-        return JsonResponse(data)
+class DeleteUser(DeleteView):
+    model = UserPie
+    success_url = reverse_lazy("users:list_users")
 
 
 class UpdateUser(View):
@@ -124,5 +118,3 @@ def createLog(user, type, details):
         date=datetime.datetime.now(), type=type, user=user, details=details
     )
     obj.save()
-
-
