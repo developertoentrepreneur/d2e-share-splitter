@@ -1,11 +1,10 @@
 // UpdateUser
 function getUserForm(id) {
-  let loading = new bootstrap.Modal(document.getElementById("modalLoading"));
-  loading.show();
+  loadingModal = showLoadingModal();
   let url = url_user_form.replace("0000", id);
   getRequest(url).then(
     (response) => {
-      loading.hide();
+      loadingModal.hide();
       $("#modalsContainer").html(response);
       var modalUpdate = new bootstrap.Modal(
         document.getElementById("userFormModalUpdate")
