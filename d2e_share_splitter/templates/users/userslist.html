@@ -6,9 +6,9 @@
 {% block content %}
 <div class="container">
   <h1>Users</h1>
-  <div class="row">
+  <div class="row justify-content-center">
 
-    <div class="col-md-8">
+    <div class="col-12 justify-content-center">
       <div class="table-responsive">
 
         <table id="userTable" class="table table-striped">
@@ -41,8 +41,8 @@
           </tr>
           {% endfor %}
         </table>
-        {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
       </div>
+      {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
 
       <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal"
         data-bs-target="#modalUserCreate">
