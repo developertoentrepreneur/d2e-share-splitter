@@ -9,37 +9,41 @@
   <div class="row">
 
     <div class="col-md-8">
+      <div class="table-responsive">
 
-      <table id="userTable" class="table table-striped">
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Job Title</th>
-          <th>Year Salary</th>
-          <th colspan="3">Slices</th>
-        </tr>
-        {% for user in users %}
-        <tr id="user-{{user.id}}">
-          <td class="userName userData" name="name">{{user.name}}</td>
-          <td class="userEmail userData" name="email">{{user.email}}</td>
-          <td class="userJobTitle userData" name="jobTitle">{{user.jobTitle}}</td>
-          <td class="userYearSalary userData" name="yearSalary">{{user.yearSalary}}</td>
-          <td name="slices">{{user.slices}}</td>
-          <td id="buttons{{user.id}}">
-            <button class="btn btn-success form-control" onClick="getUserForm({{user.id}})" data-toggle="modal"
-              data-target="#myModal" )>
-              <i class="bi bi-pencil"></i>
-            </button>
-          </td>
-          <td>
-            <button class="btn btn-danger form-control" onClick="deleteUser({{user.id}}, `{{user.email}}`)"
-              data-bs-toggle="modal" data-bs-target="#modalUserDelete">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
+        <table id="userTable" class="table table-striped">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job Title</th>
+            <th>Year Salary</th>
+            <th colspan="3">Slices</th>
+          </tr>
+          {% for user in users %}
+          <tr id="user-{{user.id}}">
+            <td class="userName userData" name="name">{{user.name}}</td>
+            <td class="userEmail userData" name="email">{{user.email}}</td>
+            <td class="userJobTitle userData" name="jobTitle">{{user.jobTitle}}</td>
+            <td class="userYearSalary userData" name="yearSalary">{{user.yearSalary}}</td>
+            <td name="slices">{{user.slices}}</td>
+            <td id="buttons{{user.id}}">
+              <button class="btn btn-success form-control" onClick="getUserForm({{user.id}})" data-toggle="modal"
+                data-target="#myModal" )>
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger form-control" onClick="deleteUser({{user.id}}, `{{user.email}}`)"
+                data-bs-toggle="modal" data-bs-target="#modalUserDelete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
+      </div>
+
       <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal"
         data-bs-target="#modalUserCreate">
         New User

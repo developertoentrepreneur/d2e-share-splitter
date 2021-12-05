@@ -13,7 +13,8 @@ from django.views.generic import RedirectView
 from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic import View
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import DeleteView
 
 from d2e_share_splitter.users.forms import FormUser
 from d2e_share_splitter.users.models import UserLog
@@ -59,12 +60,14 @@ class UsersLog(LoginRequiredMixin, ListView):
     model = UserLog
 
 
-class UsersView(LoginRequiredMixin, TemplateView):
+class UsersView(LoginRequiredMixin, ListView):
+    model = UserPie
     template_name = "users/userslist.html"
+    paginate_by = 2
+    context_object_name = "users"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["users"] = UserPie.objects.all()
         context["form"] = FormUser()
         return context
 
