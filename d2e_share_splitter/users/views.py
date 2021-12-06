@@ -18,7 +18,7 @@ from django.views.generic.edit import DeleteView
 
 from d2e_share_splitter.users.forms import FormUser
 from d2e_share_splitter.users.models import UserLog
-from d2e_share_splitter.users.models import UserPie
+from d2e_share_splitter.users.models import User
 
 User = get_user_model()
 
@@ -61,7 +61,7 @@ class UsersLog(LoginRequiredMixin, ListView):
 
 
 class UsersView(LoginRequiredMixin, ListView):
-    model = UserPie
+    model = User
     template_name = "users/userslist.html"
     paginate_by = 2
     context_object_name = "users"
@@ -73,13 +73,13 @@ class UsersView(LoginRequiredMixin, ListView):
 
 
 class CreateUser(CreateView):
-    model = UserPie
+    model = User
     fields = ["name", "email", "jobTitle", "yearSalary"]
     success_url = reverse_lazy("users:list_users")
 
 
 class DeleteUser(DeleteView):
-    model = UserPie
+    model = User
     success_url = reverse_lazy("users:list_users")
 
 
@@ -91,7 +91,7 @@ class UpdateUser(View):
         jobTitle1 = request.GET.get("jobTitle", None)
         yearSalary1 = request.GET.get("yearSalary", None)
 
-        obj = UserPie.objects.get(id=id1)
+        obj = User.objects.get(id=id1)
         details = checkEdit(
             [name1, email1, jobTitle1, yearSalary1],
             [obj.name, obj.email, obj.jobTitle, obj.yearSalary],

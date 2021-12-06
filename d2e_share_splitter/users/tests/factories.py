@@ -8,7 +8,7 @@ from factory import post_generation
 from factory.django import DjangoModelFactory
 from rest_framework.authtoken.models import Token
 
-from d2e_share_splitter.users.models import UserPie
+from d2e_share_splitter.users.models import User
 
 
 class UserFactory(DjangoModelFactory):
@@ -46,9 +46,9 @@ class TokenUserFactory(DjangoModelFactory):
         django_get_or_create = ("user",)
 
 
-class UserPieFactory(DjangoModelFactory):
+class UserFactory(DjangoModelFactory):
     class Meta:
-        model = UserPie
+        model = User
 
     name = "Default User"
     email = "default@mail.com"

@@ -2,12 +2,12 @@ import pytest
 from django.test import RequestFactory
 from django.urls import reverse
 
-from d2e_share_splitter.users.api.serializers import UserPieSerializer
+from d2e_share_splitter.users.api.serializers import UserSerializer
 from d2e_share_splitter.users.api.views import UserViewSet
 from d2e_share_splitter.users.models import User
-from d2e_share_splitter.users.models import UserPie
+from d2e_share_splitter.users.models import User
 from d2e_share_splitter.users.tests.factories import UserFactory
-from d2e_share_splitter.users.tests.factories import UserPieFactory
+from d2e_share_splitter.users.tests.factories import UserFactory
 from d2e_share_splitter.users.utils import create_admin_user
 
 pytestmark = pytest.mark.django_db
@@ -52,18 +52,18 @@ class TestUserView:
         assert "token" in response.data.keys()
 
     def test_get_queryset(self, api_client, user):
-        user_pie = UserPieFactory()
+        user_pie = UserFactory()
         url = reverse("users:form", kwargs={"user_pk": user_pie.pk})
         api_client.force_authenticate(user)
         response = api_client.get(url)
         user_obj = response.data.get("user")
         serializer_obj = response.data.get("serializer")
-        assert isinstance(user_obj, UserPie)
-        assert isinstance(serializer_obj, UserPieSerializer)
+        assert isinstance(user_obj, User)
+        assert isinstance(serializer_obj, UserSerializer)
 
     def test_update_user_pie(self, api_client, user):
         params = {"name": "Pedro"}
-        user_pie = UserPieFactory()
+        user_pie = UserFactory()
         url = reverse("users:form", kwargs={"user_pk": user_pie.pk})
         api_client.force_authenticate(user)
         response = api_client.patch(url, params)

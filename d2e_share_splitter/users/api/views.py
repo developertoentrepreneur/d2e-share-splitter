@@ -13,9 +13,9 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from d2e_share_splitter.users.models import UserPie
+from d2e_share_splitter.users.models import User
 
-from .serializers import UserPieSerializer
+from .serializers import UserSerializer
 from .serializers import UserSerializer
 
 User = get_user_model()
@@ -42,11 +42,11 @@ class UserRetrieveUpdateView(RetrieveUpdateAPIView):
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [IsAuthenticated]
     template_name = "users/modals/user_modal_update.html"
-    queryset = UserPie.objects.all()
-    serializer_class = UserPieSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     lookup_url_kwarg = "user_pk"
 
     def get(self, request, user_pk):
-        user = get_object_or_404(UserPie, pk=user_pk)
+        user = get_object_or_404(User, pk=user_pk)
         serializer = self.get_serializer(user)
         return Response({"serializer": serializer, "user": user})

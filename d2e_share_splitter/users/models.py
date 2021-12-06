@@ -12,6 +12,10 @@ class User(AbstractUser):
     name = CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore
     last_name = None  # type: ignore
+    jobTitle = models.CharField(max_length=1024)
+    yearSalary = models.IntegerField(default=0)
+    well = models.FloatField(default=0)
+    slices = models.FloatField(default=0)
 
     def get_absolute_url(self):
         """Get url for user's detail view.
@@ -23,13 +27,13 @@ class User(AbstractUser):
         return reverse("users:detail", kwargs={"username": self.username})
 
 
-class UserPie(models.Model):
-    name = models.CharField(max_length=1024)
-    email = models.EmailField()
-    jobTitle = models.CharField(max_length=1024)
-    yearSalary = models.IntegerField(default=0)
-    well = models.FloatField(default=0)
-    slices = models.FloatField(default=0)
+# class User(models.Model):
+#     name = models.CharField(max_length=1024)
+#     email = models.EmailField()
+#     jobTitle = models.CharField(max_length=1024)
+#     yearSalary = models.IntegerField(default=0)
+#     well = models.FloatField(default=0)
+#     slices = models.FloatField(default=0)
 
 
 class UserLog(models.Model):
@@ -37,7 +41,7 @@ class UserLog(models.Model):
     type = models.CharField(max_length=1024, default="creation")
     user = models.CharField(max_length=1024)
     # no ForeignKey to keep tracability
-    # user = models.ForeignKey(UserPie,
+    # user = models.ForeignKey(User,
     #                          on_delete=models.SET_NULL  ,
     #                          )
     details = models.CharField(max_length=1024)

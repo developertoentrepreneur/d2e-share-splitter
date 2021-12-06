@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from d2e_share_splitter.users.models import UserPie
+from d2e_share_splitter.users.models import User
 
 User = get_user_model()
 
@@ -16,9 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
-class UserPieSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserPie
+        model = User
         fields = [
             "name",
             "email",

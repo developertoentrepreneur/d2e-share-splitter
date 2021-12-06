@@ -1,12 +1,12 @@
 from d2e_share_splitter.sharecontributions.models import Contribution
-from d2e_share_splitter.users.models import UserPie
+from d2e_share_splitter.users.models import User
 
 
 def update_pie_slices():
     users = Contribution.get_users()
     for user_name in users:
         try:
-            user = UserPie.objects.get(name=user_name)
+            user = User.objects.get(name=user_name)
         except Exception as e:
             print(e)
             return

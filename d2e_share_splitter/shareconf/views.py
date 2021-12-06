@@ -7,7 +7,7 @@ from d2e_share_splitter.shareconf.models import Project
 from d2e_share_splitter.shareconf.models import ShareConfiguration
 from d2e_share_splitter.shareconf.utils import update_pie_slices
 
-# from shareusers.models import UserPie
+# from shareusers.models import User
 
 
 class PieView(LoginRequiredMixin, TemplateView):
@@ -18,7 +18,7 @@ class PieView(LoginRequiredMixin, TemplateView):
         update_pie_slices()
         context["shareconf"] = ShareConfiguration.objects.all()
         context["projects"] = Project.objects.all()
-        # context["users"] = UserPie.objects.all()
+        # context["users"] = User.objects.all()
         return context
 
 

@@ -8,7 +8,7 @@ from d2e_share_splitter.shareconf.models import Project
 from d2e_share_splitter.shareconf.models import ShareConfiguration
 from d2e_share_splitter.sharecontributions.models import ContribLog
 from d2e_share_splitter.sharecontributions.models import Contribution
-from d2e_share_splitter.users.models import UserPie
+from d2e_share_splitter.users.models import User
 
 
 class ContribsView(LoginRequiredMixin, TemplateView):
@@ -17,7 +17,7 @@ class ContribsView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["contributions"] = Contribution.objects.all()
-        context["shareusers"] = UserPie.objects.all()
+        context["shareusers"] = User.objects.all()
         context["projects"] = Project.objects.all()
         return context
 
@@ -78,7 +78,7 @@ class DeleteContrib(View):
         obj.delete()
 
         try:
-            user = UserPie.objects.get(name=obj.user)
+            user = User.objects.get(name=obj.user)
             user.slices = user.slices - obj.slices
             user.save()
         except:
@@ -105,7 +105,7 @@ def compute_pie_slices(
     hours=None,
 ):
     shareconf = ShareConfiguration.objects.get(pk=1)
-    user = UserPie.objects.get(name=name)
+    user = User.objects.get(name=name)
     if hours != 0:
         print("in hours: " + str(hours))
         hourly_rate = user.yearSalary / 2000  # since it's considered 2000h/year
