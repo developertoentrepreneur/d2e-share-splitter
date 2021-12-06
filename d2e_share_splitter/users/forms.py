@@ -21,7 +21,7 @@ class UserCreationForm(admin_forms.UserCreationForm):
 
 
 class FormUser(forms.Form):
-    name = forms.CharField(required=True)
+    username = forms.CharField(required=True)
     email = forms.EmailField(required=True)
     jobTitle = forms.CharField(required=True)
     yearSalary = forms.IntegerField(required=True)

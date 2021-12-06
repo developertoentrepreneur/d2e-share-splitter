@@ -13,15 +13,15 @@
 
         <table id="userTable" class="table table-striped">
           <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Username</th>
+            <th class="w-25"> Email</th>
             <th>Job Title</th>
             <th>Year Salary</th>
             <th colspan="3">Slices</th>
           </tr>
           {% for user in users %}
           <tr id="user-{{user.id}}">
-            <td class="userName userData" name="name">{{user.name}}</td>
+            <td class="userName userData" name="name">{{user.username}}</td>
             <td class="userEmail userData" name="email">{{user.email}}</td>
             <td class="userJobTitle userData" name="jobTitle">{{user.jobTitle}}</td>
             <td class="userYearSalary userData" name="yearSalary">{{user.yearSalary}}</td>

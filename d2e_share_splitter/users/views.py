@@ -17,8 +17,8 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 
 from d2e_share_splitter.users.forms import FormUser
-from d2e_share_splitter.users.models import UserLog
 from d2e_share_splitter.users.models import User
+from d2e_share_splitter.users.models import UserLog
 
 User = get_user_model()
 
@@ -74,7 +74,7 @@ class UsersView(LoginRequiredMixin, ListView):
 
 class CreateUser(CreateView):
     model = User
-    fields = ["name", "email", "jobTitle", "yearSalary"]
+    fields = ["username", "email", "jobTitle", "yearSalary"]
     success_url = reverse_lazy("users:list_users")
 
 
