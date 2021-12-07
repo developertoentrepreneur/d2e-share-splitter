@@ -5,7 +5,7 @@ function getUserForm(id) {
   getRequest(url).then(
     (response) => {
       loadingModal.hide();
-      $("#modalsContainer").html(response);
+      $("#editModalContainer").html(response);
       var modalUpdate = new bootstrap.Modal(
         document.getElementById("userFormModalUpdate")
       );
