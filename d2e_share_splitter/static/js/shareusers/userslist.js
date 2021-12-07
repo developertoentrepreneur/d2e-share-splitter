@@ -22,5 +22,5 @@ function deleteUser(id, username) {
   $("#formDelete").each(function () {
     $(this).attr("action", $(this).attr("action").replace("0000", id));
   });
-  $("#modalUserDeleteTitle").text(`Delete user ${username}`);
+  $("#modalDeleteTitle").text(`Delete user ${username}`);
 }

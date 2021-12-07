@@ -34,7 +34,7 @@
             </td>
             <td>
               <button class="btn btn-danger form-control" onClick="deleteUser({{user.id}}, `{{user.email}}`)"
-                data-bs-toggle="modal" data-bs-target="#modalUserDelete">
+                data-bs-toggle="modal" data-bs-target="#modalDelete">
                 <i class="bi bi-trash"></i>
               </button>
             </td>
@@ -56,9 +56,9 @@
 
 
 
-
+{% url 'users:user_delete' '0000' as url_delete %}
 {% include "atoms/modals/modal_create.html" with form=form title="Create new user" url_create=url_create%}
-{% include "users/modals/user_modal_delete.html" with form=form %}
+{% include "atoms/modals/modal_delete.html" with form=form title="Delete user" url_delete=url_delete%}
 
 <div id="modalsContainer">
 </div>
