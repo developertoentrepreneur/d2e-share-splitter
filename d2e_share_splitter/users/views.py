@@ -69,6 +69,7 @@ class UsersView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = FormUser()
+        context["url_create"] = reverse("users:user_create")
         return context
 
 
