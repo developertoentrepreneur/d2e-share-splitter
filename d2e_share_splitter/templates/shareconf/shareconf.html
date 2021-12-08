@@ -9,44 +9,22 @@
   <h1>ShareSplitter Configuration</h1>
   <div class="row">
     <div id="sharechart" style="width: 900px; height: 500px;"></div>
-    <div class="col-md-4">
 
-      <table id="projTab" class="table table-striped">
-        <tr>
-          <th> Configuration</th>
-          <th> Value</th>
-        </tr>
-        {% for conf in shareconf %}
-        <tr id="conf-{{conf.id}}">
-          <td> Non Cash Multiplier</td>
-          <td class="projName projData" name="name">{{conf.non_cash_multiplier}}</td>
-        </tr>
-        <tr id="conf-{{conf.id}}">
-          <td> Cash Multiplier</td>
-          <td class="projName projData" name="name">{{conf.cash_multiplier}}</td>
-        </tr>
-        <tr id="conf-{{conf.id}}">
-          <td> Commission Rate</td>
-          <td class="projName projData" name="name">{{conf.commissionRate}}</td>
-        </tr>
-        <tr id="conf-{{conf.id}}">
-          <td> Inverstor Rate</td>
-          <td class="projName projData" name="name">{{conf.investorFinderRate}}</td>
-        </tr>
-        {% endfor %}
-      </table>
 
-    </div>
-
-    <div class="col-md-4">
+    <div class="col-md-8 col-12">
 
       <table id="projTable" class="table table-striped">
         <tr>
           <th colspan="1">Projects</th>
+          <th> Cash multiplier</th>
+          <th> Non cash multiplier</th>
+          <th></th>
         </tr>
         {% for proj in projects %}
         <tr id="proj-{{proj.id}}">
           <td class="projName projData" name="name">{{proj.name}}</td>
+          <td class="projName projData" name="name">{{proj.cash_multiplier}}</td>
+          <td class="projName projData" name="name">{{proj.non_cash_multiplier}}</td>
           <td>
             <button class="btn btn-danger form-control" onClick="deleteInstance({{proj.id}}, `{{proj.name}}`)"
               data-bs-toggle="modal" data-bs-target="#modalDelete">
