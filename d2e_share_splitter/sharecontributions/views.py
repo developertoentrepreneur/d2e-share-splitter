@@ -8,19 +8,23 @@ from django.views.generic.edit import CreateView
 
 from d2e_share_splitter.shareconf.models import Project
 from d2e_share_splitter.shareconf.models import ShareConfiguration
+from d2e_share_splitter.sharecontributions.forms import FormCreateContribution
 from d2e_share_splitter.sharecontributions.models import ContribLog
 from d2e_share_splitter.sharecontributions.models import Contribution
 from d2e_share_splitter.users.models import User
 
 
-class ContribsView(LoginRequiredMixin, TemplateView):
+class ContribsView(LoginRequiredMixin, ListView):
+    model = Contribution
     template_name = "sharecontributions/contributions_list.html"
+    paginate_by = 2
+    context_object_name = "contributions"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["contributions"] = Contribution.objects.all()
         context["shareusers"] = User.objects.all()
         context["projects"] = Project.objects.all()
+        context["form"] = FormCreateContribution
         return context
 
 
@@ -34,10 +38,8 @@ class ContribLog(LoginRequiredMixin, ListView):
 
 class CreateContrib(CreateView):
     model = Contribution
-    fields = ["username", "email", "jobTitle", "yearSalary"]
     success_url = reverse_lazy("sharecontributions:list_contribs")
-    form_class = CreateArticleForm
-    computed = compute_pie_slices(user, expenses, hours)
+    form_class = FormCreateContribution
 
 
 class DeleteContrib(View):
@@ -57,6 +59,3 @@ class DeleteContrib(View):
         data = {"deleted": True}
 
         return JsonResponse(data)
-
-
-

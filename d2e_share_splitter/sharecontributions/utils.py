@@ -1,3 +1,7 @@
+from d2e_share_splitter.shareconf.models import ShareConfiguration
+from d2e_share_splitter.users.forms import User
+
+
 def compute_pie_slices(
     name,
     expenses=0,
