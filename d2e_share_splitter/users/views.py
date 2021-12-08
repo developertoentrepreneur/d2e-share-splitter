@@ -10,7 +10,6 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import RedirectView
-from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic import View
 from django.views.generic.edit import CreateView
@@ -63,7 +62,7 @@ class UsersLog(LoginRequiredMixin, ListView):
 class UsersView(LoginRequiredMixin, ListView):
     model = User
     template_name = "users/userslist.html"
-    paginate_by = 2
+    paginate_by = 10
     context_object_name = "users"
 
     def get_context_data(self, **kwargs):

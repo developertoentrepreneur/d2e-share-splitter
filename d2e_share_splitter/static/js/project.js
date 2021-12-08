@@ -10,3 +10,11 @@ function hideActiveModalShowLoading(modalId) {
   active.hide();
   showLoadingModal();
 }
+
+// Delete Django Ajax Call
+function deleteInstance(id, instance) {
+  $("#formDelete").each(function () {
+    $(this).attr("action", $(this).attr("action").replace("0000", id));
+  });
+  $("#modalDeleteTitle").text(`Delete  ${instance}`);
+}

@@ -16,11 +16,3 @@ function getUserForm(id) {
     }
   );
 }
-
-// Delete Django Ajax Call
-function deleteUser(id, username) {
-  $("#formDelete").each(function () {
-    $(this).attr("action", $(this).attr("action").replace("0000", id));
-  });
-  $("#modalDeleteTitle").text(`Delete user ${username}`);
-}
