@@ -7,7 +7,6 @@ from django.views.generic import View
 from django.views.generic.edit import CreateView
 
 from d2e_share_splitter.shareconf.models import Project
-from d2e_share_splitter.shareconf.models import ShareConfiguration
 from d2e_share_splitter.sharecontributions.forms import FormCreateContribution
 from d2e_share_splitter.sharecontributions.models import ContribLog
 from d2e_share_splitter.sharecontributions.models import Contribution

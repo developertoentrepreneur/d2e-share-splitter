@@ -1,4 +1,4 @@
-from d2e_share_splitter.shareconf.models import ShareConfiguration
+from d2e_share_splitter.shareconf.models import Project
 from d2e_share_splitter.users.forms import User
 
 
@@ -7,13 +7,13 @@ def compute_pie_slices(
     expenses=0,
     hours=None,
 ):
-    shareconf = ShareConfiguration.objects.get(pk=1)
+    project = Project.objects.first()
     user = User.objects.get(name=name)
     if hours != 0:
         print("in hours: " + str(hours))
         hourly_rate = user.yearSalary / 2000  # since it's considered 2000h/year
         value = hours * hourly_rate
-        slices = value * shareconf.nonCashMultiplier
+        slices = value * project.non_cash_multiplier
         print(
             "slices: "
             + str(slices)
@@ -22,13 +22,13 @@ def compute_pie_slices(
             + ", expenses: "
             + str(expenses)
             + ", Noncash: "
-            + str(shareconf.nonCashMultiplier)
+            + str(project.non_cash_multiplier)
             + ", value: "
             + str(value)
         )
     elif expenses != 0:
         value = expenses
-        slices = value * shareconf.cashMultiplier
+        slices = value * project.cash_multiplier
 
     user.slices = user.slices + slices
     user.save()

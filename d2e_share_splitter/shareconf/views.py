@@ -8,7 +8,6 @@ from django.views.generic.list import ListView
 
 from d2e_share_splitter.shareconf.forms import FormCreateProject
 from d2e_share_splitter.shareconf.models import Project
-from d2e_share_splitter.shareconf.models import ShareConfiguration
 from d2e_share_splitter.shareconf.utils import update_pie_slices
 from d2e_share_splitter.users.models import User
 
@@ -24,7 +23,6 @@ class PieView(LoginRequiredMixin, ListView):
         update_pie_slices()
         context["form"] = FormCreateProject()
         context["users"] = User.objects.all()
-        context["shareconf"] = ShareConfiguration.objects.all()
         return context
 
 

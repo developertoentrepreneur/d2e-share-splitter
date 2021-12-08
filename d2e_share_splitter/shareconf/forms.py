@@ -6,4 +6,4 @@ from d2e_share_splitter.shareconf.models import Project
 class FormCreateProject(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ["name"]
+        fields = ["name", ""]
