@@ -83,38 +83,6 @@ class DeleteUser(DeleteView):
     success_url = reverse_lazy("users:list_users")
 
 
-class UpdateUser(View):
-    def get(self, request):
-        id1 = request.GET.get("id", None)
-        name1 = request.GET.get("name", None)
-        email1 = request.GET.get("email", None)
-        jobTitle1 = request.GET.get("jobTitle", None)
-        yearSalary1 = request.GET.get("yearSalary", None)
-
-        obj = User.objects.get(id=id1)
-        details = checkEdit(
-            [name1, email1, jobTitle1, yearSalary1],
-            [obj.name, obj.email, obj.jobTitle, obj.yearSalary],
-        )
-        createLog(str(obj.name), "edit", details)
-        obj.name = name1
-        obj.email = email1
-        obj.jobTitle = jobTitle1
-        obj.yearSalary = yearSalary1
-        obj.save()
-
-        user = {
-            "id": obj.id,
-            "name": obj.name,
-            "email": obj.email,
-            "jobTitle": obj.jobTitle,
-            "yearSalary": obj.yearSalary,
-        }
-
-        data = {"user": user}
-        return JsonResponse(data)
-
-
 def createLog(user, type, details):
     print(user)
     obj = UserLog.objects.create(

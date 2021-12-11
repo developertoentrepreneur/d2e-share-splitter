@@ -60,6 +60,10 @@
 
 {% block javascript %}
 <script type="text/javascript">
+  var url_edit = '{% url "shareconf:form" "0000" %}'
+</script>
+
+<script type="text/javascript">
   var users_data = [['Name', 'Slices']];
   {% for user in users %}
   users_data.push(['{{user.name}}', parseFloat('{{user.slices}}')]);

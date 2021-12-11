@@ -3,7 +3,6 @@ from django.urls import path
 from d2e_share_splitter.users.api.views import UserRetrieveUpdateView
 from d2e_share_splitter.users.views import CreateUser
 from d2e_share_splitter.users.views import DeleteUser
-from d2e_share_splitter.users.views import UpdateUser
 from d2e_share_splitter.users.views import UserDetailView
 from d2e_share_splitter.users.views import UserRedirectView
 from d2e_share_splitter.users.views import UsersLog
@@ -16,7 +15,6 @@ urlpatterns_view = [
     path("log/", UsersLog.as_view(), name="log_users"),
     path("create/", CreateUser.as_view(), name="user_create"),
     path("<int:pk>/delete/", DeleteUser.as_view(), name="user_delete"),
-    path("update/", UpdateUser.as_view(), name="user_update"),
     path("~redirect/", UserRedirectView.as_view(), name="redirect"),
     path("~update/", UserUpdateView.as_view(), name="update"),
     path("<str:username>/", UserDetailView.as_view(), name="detail"),

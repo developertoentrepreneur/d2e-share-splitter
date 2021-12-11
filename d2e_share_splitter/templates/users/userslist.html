@@ -27,7 +27,7 @@
             <td class="userYearSalary userData" name="yearSalary">{{user.yearSalary}}</td>
             <td name="slices">{{user.slices}}</td>
             <td id="buttons{{user.id}}">
-              <button class="btn btn-success form-control" onClick="getUserForm({{user.id}})">
+              <button class="btn btn-success form-control" onClick="getInstance({{user.id}})">
                 <i class="bi bi-pencil"></i>
               </button>
             </td>
@@ -59,8 +59,6 @@
 {% include "atoms/modals/modal_create.html" with form=form title="Create new user" url_create=url_create%}
 {% include "atoms/modals/modal_delete.html" with form=form title="Delete user" url_delete=url_delete%}
 
-<div id="editModalContainer">
-</div>
 
 {% endblock %}
 
@@ -68,7 +66,6 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  var url_user_form = '{% url "users:form" "0000" %}'
+  var url_edit = '{% url "users:form" "0000" %}'
 </script>
-<script src="{% static 'js/shareusers/userslist.js' %}"></script>
 {% endblock javascript %}

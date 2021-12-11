@@ -1,7 +1,7 @@
-// UpdateUser
-function getUserForm(id) {
+// modal Update
+function getInstance(id) {
   loadingModal = showLoadingModal();
-  let url = url_user_form.replace("0000", id);
+  let url = url_edit.replace("0000", id);
   getRequest(url).then(
     (response) => {
       loadingModal.hide();

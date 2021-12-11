@@ -42,6 +42,8 @@
   <script defer src="{% static 'js/project.js' %}"></script>
   <script defer src="{% static 'js/utils/token_utils.js' %}"></script>
   <script defer src="{% static 'js/utils/request_utils.js' %}"></script>
+  <script defer src="{% static 'js/utils/modals/modal_edit.js' %}"></script>
+
 
   {% block javascript %}
 
@@ -123,6 +125,10 @@
     {% block content %}
     <p>Use this document as a way to quick start any new project.</p>
     {% endblock content %}
+
+    <div id="editModalContainer">
+    </div>
+
 
   </div> <!-- /container -->
 
