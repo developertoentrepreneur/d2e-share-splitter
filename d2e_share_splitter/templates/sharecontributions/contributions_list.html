@@ -50,7 +50,7 @@ f
   </div>
 
 
-  {% url 'sharecontributions:contrib_create' '0000' as url_create %}
+  {% url 'sharecontributions:contrib_create' as url_create %}
   {% url 'sharecontributions:contrib_delete' '0000' as url_delete %}
   {% include "atoms/modals/modal_create.html" with form=form title="Create new contribution" url_create=url_create%}
   {% include "atoms/modals/modal_delete.html" with form=form title="Delete contribution" url_delete=url_delete%}
@@ -63,8 +63,6 @@ f
 
   {% block javascript %}
   <script type="text/javascript">
-    var var_url_contrib_create = '{% url "sharecontributions:contrib_create" %}';
-    var var_url_contrib_delete = '{% url "sharecontributions:contrib_delete" %}';
+    var url_edit = '{% url "shareconf:form" "0000" %}'
   </script>
-  <script src="{% static 'js/sharecontributions/contribslist.js' %}"></script>
   {% endblock javascript %}

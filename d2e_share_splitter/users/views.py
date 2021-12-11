@@ -18,6 +18,7 @@ from django.views.generic.edit import DeleteView
 from d2e_share_splitter.users.forms import FormUser
 from d2e_share_splitter.users.models import User
 from d2e_share_splitter.users.models import UserLog
+from d2e_share_splitter.utils.views_modal import ListPaginatedWithFormView
 
 User = get_user_model()
 
@@ -59,17 +60,11 @@ class UsersLog(LoginRequiredMixin, ListView):
     model = UserLog
 
 
-class UsersView(LoginRequiredMixin, ListView):
+class UsersView(LoginRequiredMixin, ListPaginatedWithFormView):
     model = User
     template_name = "users/userslist.html"
-    paginate_by = 10
     context_object_name = "users"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form"] = FormUser()
-        context["url_create"] = reverse("users:user_create")
-        return context
+    form_class = FormUser
 
 
 class CreateUser(CreateView):
@@ -81,11 +76,3 @@ class CreateUser(CreateView):
 class DeleteUser(DeleteView):
     model = User
     success_url = reverse_lazy("users:list_users")
-
-
-def createLog(user, type, details):
-    print(user)
-    obj = UserLog.objects.create(
-        date=datetime.datetime.now(), type=type, user=user, details=details
-    )
-    obj.save()

@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from d2e_share_splitter.users.models import User
-from d2e_share_splitter.utils.views_modal_update import ModalRetrieveUpdateView
+from d2e_share_splitter.utils.views_modal import ModalRetrieveUpdateView
 
 from .serializers import UserFormSerializer
 from .serializers import UserSerializer

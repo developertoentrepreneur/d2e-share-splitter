@@ -8,26 +8,22 @@ from django.views.generic.edit import CreateView
 
 from d2e_share_splitter.shareconf.models import Project
 from d2e_share_splitter.sharecontributions.forms import FormCreateContribution
+from d2e_share_splitter.sharecontributions.forms import (
+    fields_form_shareconribution,
+)  # NOQA
 from d2e_share_splitter.sharecontributions.models import ContribLog
 from d2e_share_splitter.sharecontributions.models import Contribution
 from d2e_share_splitter.users.models import User
+from d2e_share_splitter.utils.views_modal import ListPaginatedWithFormView
 
 
-class ContribsView(LoginRequiredMixin, ListView):
+class ContribsView(LoginRequiredMixin, ListPaginatedWithFormView):
     model = Contribution
     template_name = "sharecontributions/contributions_list.html"
-    paginate_by = 2
     context_object_name = "contributions"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["shareusers"] = User.objects.all()
-        context["projects"] = Project.objects.all()
-        context["form"] = FormCreateContribution
-        return context
+    form_class = FormCreateContribution
 
 
-# Create your views here.
 class ContribLog(LoginRequiredMixin, ListView):
     """docstring forBacktestList."""
 
@@ -37,24 +33,10 @@ class ContribLog(LoginRequiredMixin, ListView):
 
 class CreateContrib(CreateView):
     model = Contribution
+    fields = fields_form_shareconribution
     success_url = reverse_lazy("sharecontributions:list_contribs")
-    form_class = FormCreateContribution
 
 
 class DeleteContrib(View):
-    def get(self, request):
-        id1 = request.GET.get("id", None)
-        obj = Contribution.objects.get(id=id1)
-        # createLog(str(obj.name), "delete", "Contrib deleted")
-        obj.delete()
-
-        try:
-            user = User.objects.get(name=obj.user)
-            user.slices = user.slices - obj.slices
-            user.save()
-        except:
-            pass
-
-        data = {"deleted": True}
-
-        return JsonResponse(data)
+    model = Contribution
+    success_url = reverse_lazy("sharecontributions:list_contribs")

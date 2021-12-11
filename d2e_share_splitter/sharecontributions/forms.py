@@ -14,7 +14,18 @@ contribution_type_choices = (
 )
 
 
-class FormCreateContribution(forms.ModelForm):
+fields_form_shareconribution = [
+    "details",
+    "user",
+    "contribType",
+    "projectType",
+    "value",
+    "hours",
+    "date",
+]
+
+
+class FormCreateContribution(forms.Form):
     details = forms.CharField(widget=forms.Textarea)
     user = forms.ModelChoiceField(queryset=User.objects.all())
     contribType = forms.ChoiceField(
@@ -25,20 +36,3 @@ class FormCreateContribution(forms.ModelForm):
     )
     hours = forms.TimeField()
     date = forms.DateField(widget=forms.SelectDateWidget)
-
-    class Meta:
-        model = Contribution
-        fields = [
-            "details",
-            "user",
-            "contribType",
-            "projectType",
-            "value",
-            "hours",
-            "date",
-        ]
-
-    def clean(self) -> Dict[str, Any]:
-        clean = super().clean()
-        # compute_pie_slices(self.user, expenses, hours)
-        return clean
