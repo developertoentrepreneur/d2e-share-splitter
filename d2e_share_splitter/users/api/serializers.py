@@ -16,11 +16,11 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            "name",
+            "username",
             "email",
             "jobTitle",
             "yearSalary",

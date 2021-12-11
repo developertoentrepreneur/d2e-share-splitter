@@ -2,22 +2,23 @@
 {% load rest_framework %}
 
 
-<div class="modal fade" id="userFormModalUpdate" tabindex="-1" aria-labelledby="userFormModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="labelUpdate" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="userFormModalLabel">Update existing user</h5>
+                <h5 class="modal-title" id="labelUpdate">{{title}} </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formUser" action="{% url 'users:form' user_pk=user.pk %}" method="patch">
+                <form id="formUpdate" action="{{url_edit}}" method="post">
                     {% csrf_token %}
                     {% render_form serializer %}
                 </form>
             </div>
             <div class="modal-footer d-flex justify-content-center ">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-primary" type="submit" form="formUser">Save changes</button>
+                <button class="btn btn-primary" type="submit" form="formUpdate"
+                    onclick="hideActiveModalShowLoading(`modalUpdate`)">Save changes</button>
             </div>
         </div>
     </div>

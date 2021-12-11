@@ -7,7 +7,7 @@ function getUserForm(id) {
       loadingModal.hide();
       $("#editModalContainer").html(response);
       var modalUpdate = new bootstrap.Modal(
-        document.getElementById("userFormModalUpdate")
+        document.getElementById("modalUpdate")
       );
       modalUpdate.show();
     },

@@ -25,6 +25,12 @@
           <td class="projName projData" name="name">{{proj.name}}</td>
           <td class="projName projData" name="name">{{proj.cash_multiplier}}</td>
           <td class="projName projData" name="name">{{proj.non_cash_multiplier}}</td>
+          <td id="buttons{{user.id}}">
+            <button class="btn btn-success form-control" onClick="getInstance({{proj.id}})" data-toggle="modal"
+              data-target="#modalEdit" )>
+              <i class="bi bi-pencil"></i>
+            </button>
+          </td>
           <td>
             <button class="btn btn-danger form-control" onClick="deleteInstance({{proj.id}}, `{{proj.name}}`)"
               data-bs-toggle="modal" data-bs-target="#modalDelete">

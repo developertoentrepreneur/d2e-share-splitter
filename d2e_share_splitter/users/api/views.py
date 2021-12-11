@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import redirect
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.decorators import permission_classes
@@ -15,7 +17,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from d2e_share_splitter.users.models import User
 
-from .serializers import UserSerializer
+from .serializers import UserFormSerializer
 from .serializers import UserSerializer
 
 User = get_user_model()
@@ -41,12 +43,23 @@ class UserViewSet(
 class UserRetrieveUpdateView(RetrieveUpdateAPIView):
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [IsAuthenticated]
-    template_name = "users/modals/user_modal_update.html"
+    template_name = "atoms/modals/modal_update.html"
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserFormSerializer
     lookup_url_kwarg = "user_pk"
 
     def get(self, request, user_pk):
-        user = get_object_or_404(User, pk=user_pk)
-        serializer = self.get_serializer(user)
-        return Response({"serializer": serializer, "user": user})
+        user: User = get_object_or_404(User, pk=user_pk)
+        response = {
+            "user": user,
+            "serializer": self.get_serializer(user),
+            "url_edit": reverse("users:form", kwargs={"user_pk": user.pk}),
+            "title": f"Update user {user.username}",
+        }
+        return Response(response)
+
+    def post(self, request, *args, **kwargs):
+        # the requests should be a patch, but since forms only
+        # allow get or post, we must accept the post method
+        self.partial_update(request, *args, **kwargs)
+        return redirect(reverse("users:list_users"))
