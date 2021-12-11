@@ -16,6 +16,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from d2e_share_splitter.users.models import User
+from d2e_share_splitter.utils.views_modal_update import ModalRetrieveUpdateView
 
 from .serializers import UserFormSerializer
 from .serializers import UserSerializer
@@ -40,13 +41,11 @@ class UserViewSet(
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 
-class UserRetrieveUpdateView(RetrieveUpdateAPIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    permission_classes = [IsAuthenticated]
-    template_name = "atoms/modals/modal_update.html"
+class UserRetrieveUpdateView(ModalRetrieveUpdateView):
     queryset = User.objects.all()
     serializer_class = UserFormSerializer
     lookup_url_kwarg = "user_pk"
+    redirect_url = "users:list_users"
 
     def get(self, request, user_pk):
         user: User = get_object_or_404(User, pk=user_pk)
@@ -57,9 +56,3 @@ class UserRetrieveUpdateView(RetrieveUpdateAPIView):
             "title": f"Update user {user.username}",
         }
         return Response(response)
-
-    def post(self, request, *args, **kwargs):
-        # the requests should be a patch, but since forms only
-        # allow get or post, we must accept the post method
-        self.partial_update(request, *args, **kwargs)
-        return redirect(reverse("users:list_users"))
