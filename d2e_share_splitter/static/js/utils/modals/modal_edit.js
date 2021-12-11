@@ -16,3 +16,17 @@ function getInstance(id) {
     }
   );
 }
+
+function onPageLoadShowModalIfInvalidInput() {
+  if (document.getElementsByClassName("is-invalid").length) {
+    var modalUpdate = new bootstrap.Modal(
+      document.getElementById("modalCreate")
+    );
+    modalUpdate.show();
+    alert("Class exists");
+  } else {
+    alert("Class does not exist");
+  }
+}
+
+onPageLoadShowModalIfInvalidInput();

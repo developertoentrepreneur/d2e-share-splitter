@@ -34,6 +34,7 @@ class ContribLog(LoginRequiredMixin, ListView):
 class CreateContrib(CreateView):
     model = Contribution
     fields = fields_form_shareconribution
+    template_name = "sharecontributions/contributions_list.html"
     success_url = reverse_lazy("sharecontributions:list_contribs")
 
 

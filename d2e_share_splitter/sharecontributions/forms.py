@@ -19,7 +19,6 @@ fields_form_shareconribution = [
     "user",
     "contribType",
     "projectType",
-    "value",
     "hours",
     "date",
 ]
@@ -35,4 +34,4 @@ class FormCreateContribution(forms.Form):
         queryset=Project.objects.all(),
     )
     hours = forms.TimeField()
-    date = forms.DateField(widget=forms.SelectDateWidget)
+    date = forms.DateField()

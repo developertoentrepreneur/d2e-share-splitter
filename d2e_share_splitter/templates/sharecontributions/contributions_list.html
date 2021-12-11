@@ -39,13 +39,12 @@ f
           </tr>
           {% endfor %}
         </table>
-        {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
-        <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal"
-          data-bs-target="#modalCreate">
-          New Contribution
-        </button>
 
       </div>
+      {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
+      <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#modalCreate">
+        New Contribution
+      </button>
     </div>
   </div>
 
