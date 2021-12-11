@@ -6,6 +6,7 @@ from django.urls import path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     path(
@@ -32,6 +33,31 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # DRF auth token
     path("auth-token/", obtain_auth_token, name="auth-token"),
+    path(
+        "swagger-ui/",
+        TemplateView.as_view(
+            template_name="swagger.html",
+            extra_context={"schema_url": "openapi-schema"},
+        ),
+        name="swagger-ui",
+    ),
+    path(
+        "redoc/",
+        TemplateView.as_view(
+            template_name="redoc.html",
+            extra_context={"schema_url": "openapi-schema"},
+        ),
+        name="redoc",
+    ),
+    path(
+        "openapi",
+        get_schema_view(
+            title="Your Project",
+            description="API for all things …",
+            version="1.0.0",
+        ),
+        name="openapi-schema",
+    ),
 ]
 
 if settings.DEBUG:
