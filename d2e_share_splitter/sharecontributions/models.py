@@ -1,12 +1,19 @@
 from django.db import models
 
+contribution_type_choices = (
+    ("time", "Time"),
+    ("expenses", "Expenses"),
+)
 
-# Create your models here.
+
 class Contribution(models.Model):
-    # no ForeignKey to keep tracability
-    user = models.CharField(max_length=1024)
-    contribType = models.CharField(max_length=1024)
-    projectType = models.CharField(max_length=1024)
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    contribType = models.CharField(
+        max_length=1024, choices=contribution_type_choices
+    )
+    projectType = models.ForeignKey(
+        "shareconf.Project", on_delete=models.CASCADE
+    )
     value = models.FloatField(default=0, blank=True, null=True)
     hours = models.FloatField(blank=True, null=True)
     date = models.DateField()

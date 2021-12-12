@@ -1,18 +1,10 @@
-from typing import Any
-from typing import Dict
-
 from django import forms
 
 from d2e_share_splitter.shareconf.models import Project
-from d2e_share_splitter.sharecontributions.models import Contribution
-from d2e_share_splitter.sharecontributions.utils import compute_pie_slices
+from d2e_share_splitter.sharecontributions.models import (
+    contribution_type_choices,
+)  # NOQA
 from d2e_share_splitter.users.models import User
-
-contribution_type_choices = (
-    ("time", "Time"),
-    ("expenses", "Expenses"),
-)
-
 
 fields_form_shareconribution = [
     "details",
