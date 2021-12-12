@@ -6,9 +6,7 @@ function getInstance(id) {
     (response) => {
       loadingModal.hide();
       $("#editModalContainer").html(response);
-      var modalUpdate = new bootstrap.Modal(
-        document.getElementById("modalUpdate")
-      );
+      var modalUpdate = getModal("modalUpdate");
       modalUpdate.show();
     },
     (error) => {
@@ -17,16 +15,18 @@ function getInstance(id) {
   );
 }
 
-function onPageLoadShowModalIfInvalidInput() {
-  if (document.getElementsByClassName("is-invalid").length) {
-    var modalUpdate = new bootstrap.Modal(
-      document.getElementById("modalCreate")
-    );
-    modalUpdate.show();
-    alert("Class exists");
+function showModalIfInvalidInput(modalId) {
+  let modalElmnt = document.getElementById(modalId);
+  if (modalElmnt && modalElmnt.getElementsByClassName("is-invalid").length) {
+    modal = getModal(modalId);
+    modal.show();
   } else {
-    alert("Class does not exist");
   }
 }
 
-onPageLoadShowModalIfInvalidInput();
+function onPageLoadShowModalsIfInvalidInput() {
+  showModalIfInvalidInput("modalUpdate");
+  showModalIfInvalidInput("modalCreate");
+}
+
+onPageLoadShowModalsIfInvalidInput();
