@@ -39,6 +39,9 @@ def compute_pie_slices(project_id=None):
     # user.slices = user.slices + slices
     # user.save()
 
+    slices = 100
+    value = 100
+
     return {"slices": round(slices, 2), "value": round(value, 2)}
 
 
