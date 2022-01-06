@@ -51,7 +51,8 @@ f
 
   {% url 'sharecontributions:contrib_create' as url_create %}
   {% url 'sharecontributions:contrib_delete' '0000' as url_delete %}
-  {% include "atoms/modals/modal_create.html" with form=form title="Create new contribution" url_create=url_create%}
+  {% include "atoms/modals/modal_create_dynamic.html" with form=form title="Create new contribution"
+  url_create=url_create%}
   {% include "atoms/modals/modal_delete.html" with form=form title="Delete contribution" url_delete=url_delete%}
 
   <div id="editModalContainer">
