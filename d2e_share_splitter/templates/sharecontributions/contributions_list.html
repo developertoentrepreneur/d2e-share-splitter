@@ -42,7 +42,7 @@ f
 
       </div>
       {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
-      <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#modalCreate">
+      <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#modalCreateDynamic">
         New Contribution
       </button>
     </div>
@@ -51,8 +51,7 @@ f
 
   {% url 'sharecontributions:contrib_create' as url_create %}
   {% url 'sharecontributions:contrib_delete' '0000' as url_delete %}
-  {% include "atoms/modals/modal_create_dynamic.html" with form=form title="Create new contribution"
-  url_create=url_create%}
+  {% include "atoms/modals/modal_create_dynamic.html" with form=form title="Create new contribution" url_create=url_create%}
   {% include "atoms/modals/modal_delete.html" with form=form title="Delete contribution" url_delete=url_delete%}
 
   <div id="editModalContainer">
@@ -64,5 +63,8 @@ f
   {% block javascript %}
   <script type="text/javascript">
     var url_edit = '{% url "shareconf:form" "0000" %}'
+    var urlUpdateForm = '{% url "sharecontributions:contrib_form_update" %}'
   </script>
+  <script defer src="{% static 'js/utils/dynamic_form.js' %}"></script>
+
   {% endblock javascript %}

@@ -1,8 +1,9 @@
+from django import template
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
-from django.views.generic import TemplateView
 from django.views.generic import View
 from django.views.generic.edit import CreateView
 
@@ -22,6 +23,7 @@ class ContribsView(LoginRequiredMixin, ListPaginatedWithFormView):
     template_name = "sharecontributions/contributions_list.html"
     context_object_name = "contributions"
     form_class = FormCreateContribution
+    ordering = ["-date"]
 
 
 class ContribLog(LoginRequiredMixin, ListView):
@@ -41,3 +43,9 @@ class CreateContrib(CreateView):
 class DeleteContrib(View):
     model = Contribution
     success_url = reverse_lazy("sharecontributions:list_contribs")
+
+
+class UpdateContribFormView(View):
+    def post(self, request, *args, **kwargs):
+        form = FormCreateContribution(data=request.POST)
+        return render(request, "atoms/crispy_form.html", {"form": form})

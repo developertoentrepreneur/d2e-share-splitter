@@ -14,5 +14,9 @@ urlpatterns = [
     path(
         "contrib/delete/", views.DeleteContrib.as_view(), name="contrib_delete"
     ),
-    # path('contrib/update/', views.UpdateContrib.as_view(), name='contrib_update'),
+    path(
+        "contrib/update-form/",
+        views.UpdateContribFormView.as_view(),
+        name="contrib_form_update",
+    ),
 ]
