@@ -3,11 +3,11 @@
 
 
 
-<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="labelCreate" aria-hidden="true">
+<div class="modal fade" id="modalCreateDynamic" tabindex="-1" aria-labelledby="labelCreate" aria-hidden="true">
     <div class="modal-dialog">
         <div id="modalContentCreate" class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCreate">{{title}}</h5>
+                <h5 class="modal-title" id="modalCreateDynamic">{{title}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="formCreate" action="{{url_create}}" method="post">
@@ -17,7 +17,7 @@
             <div class="modal-footer d-flex justify-content-center ">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="submit" form="formCreate"
-                    onclick="hideActiveModalShowLoading(`modalCreate`, `formCreate`)">Save changes</button>
+                    onclick="hideModalShowLoading(`modalContentCreate`, `modalInnerLoading`)">Save changes</button>
             </div>
         </div>
         <div id="modalInnerLoading" class="modal-content" style="display: none!important;">

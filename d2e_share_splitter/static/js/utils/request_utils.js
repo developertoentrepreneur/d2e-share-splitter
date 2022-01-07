@@ -4,6 +4,8 @@ function performRequest(url, type, data) {
       url: url,
       type: type,
       headers: getTokenHeaders(),
+      processData: false,
+      contentType: false,
       data: data,
       success: function (data) {
         resolve(data);

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic.list import ListView
-from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import TemplateHTMLRenderer
 

@@ -46,12 +46,12 @@ class TokenUserFactory(DjangoModelFactory):
         django_get_or_create = ("user",)
 
 
-class UserFactory(DjangoModelFactory):
+class UserFactoryNoSlices(DjangoModelFactory):
     class Meta:
         model = User
 
     name = "Default User"
     email = "default@mail.com"
     jobTitle = "Admin"
-    yearSalary = 123
+    yearSalary = 35000
     slices = 0
