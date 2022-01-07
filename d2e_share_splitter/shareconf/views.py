@@ -8,7 +8,6 @@ from django.views.generic.list import ListView
 
 from d2e_share_splitter.shareconf.forms import FormCreateProject
 from d2e_share_splitter.shareconf.models import Project
-from d2e_share_splitter.sharecontributions.utils import compute_pie_slices
 from d2e_share_splitter.users.models import User
 
 
@@ -20,7 +19,6 @@ class PieView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        compute_pie_slices()
         context["form"] = FormCreateProject()
         context["users"] = User.objects.all()
         return context
