@@ -18,7 +18,7 @@ class Contribution(models.Model):
     hours = models.FloatField(blank=True, null=True)
     date = models.DateField()
     details = models.CharField(max_length=1024)
-    slices = models.FloatField(default=0)
+    shares = models.FloatField(default=0)
 
     @classmethod
     def get_users(cls):

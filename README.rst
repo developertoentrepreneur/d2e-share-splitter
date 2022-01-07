@@ -1,7 +1,7 @@
 Share Splitter
 ==============
 
-Behold My Awesome Project!
+A tool to split shares dynamically
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter
      :target: https://github.com/cookiecutter/cookiecutter-django/
@@ -12,67 +12,53 @@ Behold My Awesome Project!
 
 :License: MIT
 
-Settings
+What is this project about
 --------
 
-Moved to settings_.
+Share Splitter is a small framework to help your tartup organize your company shares dynamically. 
 
-.. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
+Built within the django framework, Share Splitter allows you to:
 
-Basic Commands
+1. Create users using `django-allauth` with yearly salaries
+2. Create contributions (either expenses or time) that will increase the owner shares of the company
+3. View the shares distribution
+
+Install
+--------
+
+To easily and quickly run this repository locally you will need Docker.
+Once docker is up and running in your local machine, the next step is to install requirements, run a db and make migrations. It is all achieved by:
+::
+  $ make local
+
+
+Initial setup
 --------------
 
-Setting Up Your Users
+Population database
 ^^^^^^^^^^^^^^^^^^^^^
 
-* To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+* To create a **initial project and admin user**, use this command::
 
-* To create an **superuser account**, use this command::
+    $ make db-populate
 
-    $ python manage.py createsuperuser
+A project called `Pecunia` will be created and an admin user with the following credentials will be created:
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+* Username: `admin`
+* Password: `admin`
 
-Type checks
-^^^^^^^^^^^
 
-Running type checks with mypy:
 
-::
 
-  $ mypy d2e_share_splitter
-
-Test coverage
-^^^^^^^^^^^^^
-
-To run the tests, check your test coverage, and generate an HTML coverage report::
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-Running tests with py.test
+Running tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+To run tests, a simple command allows you to do so
+
 ::
 
-  $ pytest
+  $ make test-all
 
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Moved to `Live reloading and SASS compilation`_.
 
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
 
-Deployment
-----------
-
-The following details how to deploy this application.
-
-Docker
-^^^^^^
-
-See detailed `cookiecutter-django Docker documentation`_.
-
-.. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html

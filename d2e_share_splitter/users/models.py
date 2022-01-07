@@ -15,7 +15,7 @@ class User(AbstractUser):
     jobTitle = models.CharField(max_length=1024)
     yearSalary = models.IntegerField(default=0)
     well = models.FloatField(default=0)
-    slices = models.FloatField(default=0)
+    shares = models.FloatField(default=0)
 
     def get_absolute_url(self):
         """Get url for user's detail view.
@@ -33,7 +33,7 @@ class User(AbstractUser):
 #     jobTitle = models.CharField(max_length=1024)
 #     yearSalary = models.IntegerField(default=0)
 #     well = models.FloatField(default=0)
-#     slices = models.FloatField(default=0)
+#     shares = models.FloatField(default=0)
 
 
 class UserLog(models.Model):

@@ -16,7 +16,7 @@ from d2e_share_splitter.sharecontributions.forms import (
 from d2e_share_splitter.sharecontributions.models import ContribLog
 from d2e_share_splitter.sharecontributions.models import Contribution
 from d2e_share_splitter.sharecontributions.utils import (
-    compute_contrib_pie_slices,
+    compute_contrib_pie_shares,
 )  # NOQA
 from d2e_share_splitter.users.models import User
 from d2e_share_splitter.utils.views_modal import ListPaginatedWithFormView
@@ -45,7 +45,7 @@ class CreateContrib(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        compute_contrib_pie_slices(self.object)
+        compute_contrib_pie_shares(self.object)
         return HttpResponseRedirect(self.get_success_url())
 
 

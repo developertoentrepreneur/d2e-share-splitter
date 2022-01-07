@@ -66,7 +66,7 @@
 <script type="text/javascript">
   var users_data = [['Name', 'Slices']];
   {% for user in users %}
-  users_data.push(['{{user.name}}', parseFloat('{{user.slices}}')]);
+  users_data.push(['{{user.name}}', parseFloat('{{user.shares}}')]);
   {% endfor %}
 </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

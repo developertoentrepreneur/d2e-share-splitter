@@ -11,7 +11,7 @@ from d2e_share_splitter.shareconf.models import Project
 from d2e_share_splitter.users.models import User
 
 
-class PieView(LoginRequiredMixin, ListView):
+class ShareDistributionView(LoginRequiredMixin, ListView):
     template_name = "shareconf/shareconf.html"
     model = Project
     paginate_by = 10
