@@ -12,6 +12,9 @@ bash:
 db-migrate:
 	docker exec -it $(CONTAINER_BACKEND) bash -c "python manage.py makemigrations && python manage.py migrate"
 
+db-populate:
+	docker exec -it $(CONTAINER_BACKEND) bash -c "python manage.py flush && python manage.py populate_db"
+
 local:
 	# start develop environment
 	docker-compose $(DOCKER_LOCAL) up ${ARGS}

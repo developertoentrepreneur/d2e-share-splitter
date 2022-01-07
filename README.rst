@@ -24,43 +24,30 @@ Built within the django framework, Share Splitter allows you to:
 Install
 --------
 
-Moved to settings_.
+To easily and quickly run this repository locally you will need Docker.
+Once docker is up and running in your local machine, the next step is to install requirements, run a db and make migrations. It is all achieved by:
+::
+  $ make local
 
-.. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
 
-Basic Commands
+Initial setup
 --------------
 
-Setting Up Your Users
+Population database
 ^^^^^^^^^^^^^^^^^^^^^
 
-* To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+* To create a **initial project and admin user**, use this command::
 
-* To create an **superuser account**, use this command::
+    $ make db-populate
 
-    $ python manage.py createsuperuser
+A project called `Pecunia` will be created and an admin user with the following credentials will be created:
+* Username: `admin`
+* Password: `admin`
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
-Type checks
-^^^^^^^^^^^
 
-Running type checks with mypy:
 
-::
-
-  $ mypy d2e_share_splitter
-
-Test coverage
-^^^^^^^^^^^^^
-
-To run the tests, check your test coverage, and generate an HTML coverage report::
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-Running tests with py.test
+Running tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
