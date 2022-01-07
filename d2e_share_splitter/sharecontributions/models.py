@@ -13,9 +13,7 @@ class Contribution(models.Model):
     contribType = models.CharField(
         max_length=1024, choices=ContributionTypeChoices.choices()
     )
-    projectType = models.ForeignKey(
-        "shareconf.Project", on_delete=models.CASCADE
-    )
+    project = models.ForeignKey("shareconf.Project", on_delete=models.CASCADE)
     amount = models.FloatField(default=0, blank=True, null=True)
     hours = models.FloatField(blank=True, null=True)
     date = models.DateField()
