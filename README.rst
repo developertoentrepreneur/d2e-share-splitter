@@ -1,7 +1,7 @@
 Share Splitter
 ==============
 
-Behold My Awesome Project!
+A tool to split shares dynamically
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter
      :target: https://github.com/cookiecutter/cookiecutter-django/
@@ -12,7 +12,16 @@ Behold My Awesome Project!
 
 :License: MIT
 
-Settings
+What is this project about
+--------
+
+Share Splitter is a small framework to help your tartup organize your company shares dynamically. 
+Built within the django framework, Share Splitter allows you to:
+1. Create a new project
+2. Create users using `django-allauth` with yearly salaries
+3. Create contributions 
+
+Install
 --------
 
 Moved to settings_.

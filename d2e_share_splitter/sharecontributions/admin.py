@@ -7,7 +7,7 @@ from d2e_share_splitter.sharecontributions.models import Contribution
 
 @admin.register(Contribution)
 class ContributionAdmin(admin.ModelAdmin):
-    list_display = ["user", "slices", "date"]
+    list_display = ["user", "shares", "date"]
     pass
 
 

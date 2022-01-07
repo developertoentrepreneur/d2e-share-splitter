@@ -7,7 +7,7 @@ from d2e_share_splitter.sharecontributions.factories import (
 )  # NOQA
 from d2e_share_splitter.sharecontributions.models import Contribution
 from d2e_share_splitter.sharecontributions.utils import (
-    compute_contrib_pie_slices,
+    compute_contrib_pie_shares,
 )  # NOQA
 from d2e_share_splitter.users.tests.factories import UserFactoryNoSlices
 
@@ -22,13 +22,13 @@ class TestComputeSlices:
         contribution: Contribution = ContributionTime10hFactory(
             project=project, user=user
         )
-        assert contribution.slices == 0
+        assert contribution.shares == 0
 
-        compute_contrib_pie_slices(contribution)
+        compute_contrib_pie_shares(contribution)
 
         contribution.refresh_from_db()
-        expected_slices = hourly_rate * 10 * project.non_cash_multiplier
-        assert contribution.slices == expected_slices
+        expected_shares = hourly_rate * 10 * project.non_cash_multiplier
+        assert contribution.shares == expected_shares
 
         user.refresh_from_db()
-        assert user.slices == expected_slices
+        assert user.shares == expected_shares
