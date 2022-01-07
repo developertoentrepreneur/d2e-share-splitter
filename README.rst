@@ -16,7 +16,9 @@ What is this project about
 --------
 
 Share Splitter is a small framework to help your tartup organize your company shares dynamically. 
+
 Built within the django framework, Share Splitter allows you to:
+
 1. Create users using `django-allauth` with yearly salaries
 2. Create contributions (either expenses or time) that will increase the owner shares of the company
 3. View the shares distribution
@@ -41,6 +43,7 @@ Population database
     $ make db-populate
 
 A project called `Pecunia` will be created and an admin user with the following credentials will be created:
+
 * Username: `admin`
 * Password: `admin`
 
