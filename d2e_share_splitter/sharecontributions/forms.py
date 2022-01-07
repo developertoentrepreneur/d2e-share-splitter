@@ -27,7 +27,7 @@ class FormCreateContribution(forms.Form, FormsUtils):
         queryset=Project.objects.all(),
     )
     hours = forms.TimeField()
-    amount = forms.FloatField()
+    amount = forms.FloatField(widget=forms.HiddenInput())
     date = forms.DateField()
 
     def __init__(self, *args, **kwargs):
@@ -39,5 +39,6 @@ class FormCreateContribution(forms.Form, FormsUtils):
         contribType = self.data.get("contribType")
         if contribType == ContributionTypeChoices.expenses.name:
             self.hide_field("hours")
+            self.number_field("amount")
         elif contribType == ContributionTypeChoices.time.name:
             self.hide_field("amount")

@@ -14,8 +14,8 @@ f
           <tr>
             <th>Team Member</th>
             <th>Type of Contrib</th>
-            <th>Project type</th>
-            <th>Value</th>
+            <th>Project</th>
+            <th>Amount (€)</th>
             <th>Hours Spent</th>
             <th>Date</th>
             <th>Details</th>
@@ -26,8 +26,8 @@ f
             <td name="name">{{contrib.user}}</td>
             <td name="contribType">{{contrib.contribType}}</td>
             <td name="projectType">{{contrib.projectType}}</td>
-            <td name="value">{{contrib.value}}</td>
-            <td name="hours">{{contrib.hours}}</td>
+            <td name="value">{% if contrib.amount %} {{contrib.amount}} € {% endif %}</td>
+            <td name="hours">{% if contrib.hours %} {{contrib.hours}} € {% endif %}</td>
             <td name="date">{{contrib.date}}</td>
             <td name="details">{{contrib.details}}</td>
             <td name="slices">{{contrib.slices}}</td>
@@ -42,7 +42,8 @@ f
 
       </div>
       {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
-      <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#modalCreateDynamic">
+      <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal"
+        data-bs-target="#modalCreateDynamic">
         New Contribution
       </button>
     </div>
