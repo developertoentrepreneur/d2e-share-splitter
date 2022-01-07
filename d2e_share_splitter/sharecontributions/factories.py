@@ -1,7 +1,7 @@
 import factory
 from factory.django import DjangoModelFactory
 
-from d2e_share_splitter.shareconf.tests.factories import ProjectFactory
+from d2e_share_splitter.shareconf.factories import ProjectFactory
 from d2e_share_splitter.sharecontributions.models import Contribution
 from d2e_share_splitter.sharecontributions.models import ContributionTypeChoices
 

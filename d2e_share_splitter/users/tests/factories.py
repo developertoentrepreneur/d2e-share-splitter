@@ -53,5 +53,5 @@ class UserFactoryNoSlices(DjangoModelFactory):
     name = "Default User"
     email = "default@mail.com"
     jobTitle = "Admin"
-    yearSalary = 123
+    yearSalary = 35000
     slices = 0
