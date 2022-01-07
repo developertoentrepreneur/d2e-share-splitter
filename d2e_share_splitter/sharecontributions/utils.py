@@ -8,7 +8,7 @@ from d2e_share_splitter.sharecontributions.models import ContributionTypeChoices
 
 
 def compute_contrib_pie_slices(contrib: Contribution):
-    project: Project = contrib.projectType
+    project: Project = contrib.project
     if contrib.contribType == ContributionTypeChoices.time.name:
         hourly_rate = (
             contrib.user.yearSalary / 2000
@@ -22,10 +22,11 @@ def compute_contrib_pie_slices(contrib: Contribution):
     contrib.slices = slices
     contrib.save(update_fields=["slices"])
 
+    compute_user_pie_slices(contrib.user)
 
-def compute_user_pie_slices(user_id):
-    User = get_user_model()
-    user: User = get_object_or_404(User, user_id)
+
+def compute_user_pie_slices(user):
     user_contributions = Contribution.objects.filter(user=user)
-    slices_user = user_contributions.aggregate(Sum("slices")).get("slices__sum")
-    return slices_user
+    user.slices = user_contributions.aggregate(Sum("slices")).get("slices__sum")
+    user.save(update_fields=["slices"])
+    return user.slices
