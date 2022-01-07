@@ -46,7 +46,7 @@ class TokenUserFactory(DjangoModelFactory):
         django_get_or_create = ("user",)
 
 
-class UserFactory(DjangoModelFactory):
+class UserFactoryNoSlices(DjangoModelFactory):
     class Meta:
         model = User
 
