@@ -4,9 +4,6 @@ from d2e_share_splitter.shareconf.models import Project
 from d2e_share_splitter.sharecontributions.models import (
     ContributionTypeChoices,
 )  # NOQA
-from d2e_share_splitter.sharecontributions.models import (
-    contribution_type_choices,
-)  # NOQA
 from d2e_share_splitter.users.models import User
 from d2e_share_splitter.utils.form_utils import FormsUtils
 from d2e_share_splitter.utils.form_utils import choice_dynamic_field
@@ -17,6 +14,7 @@ fields_form_shareconribution = [
     "contribType",
     "projectType",
     "hours",
+    "amount",
     "date",
 ]
 

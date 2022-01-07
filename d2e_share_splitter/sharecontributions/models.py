@@ -2,11 +2,6 @@ from django.db import models
 
 from d2e_share_splitter.utils.choices import EnumChoices
 
-contribution_type_choices = (
-    ("time", "Time"),
-    ("expenses", "Expenses"),
-)
-
 
 class ContributionTypeChoices(EnumChoices):
     time = "Time"
@@ -21,7 +16,7 @@ class Contribution(models.Model):
     projectType = models.ForeignKey(
         "shareconf.Project", on_delete=models.CASCADE
     )
-    value = models.FloatField(default=0, blank=True, null=True)
+    amount = models.FloatField(default=0, blank=True, null=True)
     hours = models.FloatField(blank=True, null=True)
     date = models.DateField()
     details = models.CharField(max_length=1024)
