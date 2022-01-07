@@ -12,7 +12,7 @@ fields_form_shareconribution = [
     "details",
     "user",
     "contribType",
-    "projectType",
+    "project",
     "hours",
     "amount",
     "date",
@@ -23,7 +23,7 @@ class FormCreateContribution(forms.Form, FormsUtils):
     details = forms.CharField(widget=forms.Textarea)
     user = forms.ModelChoiceField(queryset=User.objects.all())
     contribType = choice_dynamic_field(ContributionTypeChoices.choices())
-    projectType = forms.ModelChoiceField(
+    project = forms.ModelChoiceField(
         queryset=Project.objects.all(),
     )
     hours = forms.TimeField()
