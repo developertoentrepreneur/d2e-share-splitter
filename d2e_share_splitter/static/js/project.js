@@ -28,3 +28,17 @@ function isValidForm(formId) {
 function getModal(modalId) {
   return new bootstrap.Modal(document.getElementById(modalId));
 }
+
+function hideModalShowLoading(modalId, loadingId) {
+  item = document.getElementById(modalId);
+  item.style.display = "none";
+  item_loading = document.getElementById(loadingId);
+  item_loading.style.display = "flex";
+}
+
+function hideLoadingShowModal(modalId, loadingId) {
+  item_loading = document.getElementById(loadingId);
+  item_loading.style.display = "none";
+  item = document.getElementById(modalId);
+  item.style.display = "flex";
+}
