@@ -10,7 +10,7 @@ class ContributionFormSerializer(serializers.ModelSerializer):
             "details",
             "user",
             "contribType",
-            "projectType",
+            "project",
             "value",
             "hours",
             "date",
