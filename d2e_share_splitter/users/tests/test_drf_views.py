@@ -2,11 +2,10 @@ import pytest
 from django.test import RequestFactory
 from django.urls import reverse
 
+from d2e_share_splitter.users.api.serializers import UserFormSerializer
 from d2e_share_splitter.users.api.serializers import UserSerializer
 from d2e_share_splitter.users.api.views import UserViewSet
 from d2e_share_splitter.users.models import User
-from d2e_share_splitter.users.models import User
-from d2e_share_splitter.users.tests.factories import UserFactory
 from d2e_share_splitter.users.tests.factories import UserFactory
 from d2e_share_splitter.users.utils import create_admin_user
 
@@ -58,12 +57,16 @@ class TestUserView:
         response = api_client.get(url)
         user_obj = response.data.get("user")
         serializer_obj = response.data.get("serializer")
+
         assert isinstance(user_obj, User)
-        assert isinstance(serializer_obj, UserSerializer)
+        assert isinstance(serializer_obj, UserFormSerializer)
 
     def test_update_user_pie(self, api_client, user):
         params = {"name": "Pedro"}
         user_pie = UserFactory()
+        import ipdb
+
+        ipdb.set_trace()
         url = reverse("users:form", kwargs={"user_pk": user_pie.pk})
         api_client.force_authenticate(user)
         response = api_client.patch(url, params)

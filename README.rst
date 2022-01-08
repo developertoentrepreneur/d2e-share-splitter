@@ -58,7 +58,3 @@ To run tests, a simple command allows you to do so
 ::
 
   $ make test-all
-
-
-
-
