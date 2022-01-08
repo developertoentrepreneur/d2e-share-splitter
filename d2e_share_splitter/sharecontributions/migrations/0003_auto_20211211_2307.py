@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sharecontributions', '0002_remove_contribution_value'),
+        ("sharecontributions", "0002_remove_contribution_value"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='contribution',
-            name='value',
+            model_name="contribution",
+            name="value",
             field=models.FloatField(blank=True, default=0, null=True),
         ),
         migrations.AlterField(
-            model_name='contribution',
-            name='hours',
+            model_name="contribution",
+            name="hours",
             field=models.FloatField(blank=True, null=True),
         ),
     ]

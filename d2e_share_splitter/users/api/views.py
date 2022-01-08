@@ -24,9 +24,7 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 
-class UserViewSet(
-    RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet
-):
+class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     lookup_field = "username"

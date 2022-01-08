@@ -9,9 +9,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
-    path(
-        "", TemplateView.as_view(template_name="pages/home.html"), name="home"
-    ),
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -84,6 +82,4 @@ if settings.DEBUG:
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
-        urlpatterns = [
-            path("__debug__/", include(debug_toolbar.urls))
-        ] + urlpatterns
+        urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns

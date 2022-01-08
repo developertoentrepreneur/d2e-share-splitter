@@ -6,21 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shareconf', '0001_initial'),
+        ("shareconf", "0001_initial"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='ShareConfiguration',
+            name="ShareConfiguration",
         ),
         migrations.AddField(
-            model_name='project',
-            name='cashMultiplier',
+            model_name="project",
+            name="cashMultiplier",
             field=models.IntegerField(default=5),
         ),
         migrations.AddField(
-            model_name='project',
-            name='nonCashMultiplier',
+            model_name="project",
+            name="nonCashMultiplier",
             field=models.IntegerField(default=2),
         ),
     ]

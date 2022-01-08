@@ -10,9 +10,7 @@ from d2e_share_splitter.sharecontributions.models import ContributionTypeChoices
 def compute_contrib_pie_shares(contrib: Contribution):
     project: Project = contrib.project
     if contrib.contribType == ContributionTypeChoices.time.name:
-        hourly_rate = (
-            contrib.user.yearSalary / 2000
-        )  # since it's considered 2000h/year
+        hourly_rate = contrib.user.yearSalary / 2000  # since it's considered 2000h/year
         cash_amount = contrib.hours * hourly_rate
         shares = cash_amount * project.non_cash_multiplier
 
