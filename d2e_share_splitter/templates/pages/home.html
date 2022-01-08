@@ -1,1 +1,116 @@
 {% extends "base.html" %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center">
+
+    <div class="col-md-6 ">
+
+        <h1>Share Splitter</h1>
+        <br>
+        <h2>1. Introduction</h2>
+        <br>
+        <p>Welcome to the Share Splitter project, a tool to help you and your team split your company shares
+            dynamically!
+        </p>
+        <p>At DevelopperToEntrepreneur, we aim at giving you free tools such as this one, so we hope you enjoy it :)
+        </p>
+        <br>
+        <h4> a. The pain</h4>
+        <br>
+        <p>When starting a project, it is never easy to define within a team the shares distribution. You may think that
+            you
+            deserve more because of your expertise, because of your connections or any other valid reason.
+        </p>
+        <p>Most probably same will happen with other team members. Therefore, there is a need of a fair system to
+            distribute
+            shares.
+        </p>
+        <br>
+        <h4> b. The solution</h4>
+        <br>
+        <p>There are many solutions to fairly distribute shares amongst your team members. The one proposed in this
+            project is based on the fact that shares distribution should never be fixed in time.
+        </p>
+        <p>Indeed, it makes more sense to distribute the shares according to each team member contributions. Each
+            contribution should have its own value depending on the contribution type.
+        </p>
+        <br>
+        <h2>2. How to use it</h2>
+        <br>
+        <p>Share Splitter is the tool to facilitate you splitting shares dynamically within your team. It is composed of
+            three main components: a project, users and contributions
+        </p>
+        <br>
+        <h4> a. Projects</h4>
+        <br>
+        <p>Once you have managed to install Share Splitter, you first need a project to begin interacting with the tool.
+            As of this version, a project has three main parameters:
+        </p>
+        <ul>
+            <li>Name: The name of the project</li>
+            <li>Cash multiplier: A value that will be used to compute the shares created out of expenses contributions
+            </li>
+            <li>Non cash multiplier: A value that will be used to compute the shares created out of timed contributions
+            </li>
+        </ul>
+        <p>Those parameters will be explained further in detail in the following sections</p>
+        <br>
+        <h4> b. Users</h4>
+        <br>
+        <p>By default an admin user is created so it's possible to interact with the platform. You can easily create new
+            users through the users tab. Upon a user creation, the following parameters must be defined
+        </p>
+        <ul>
+            <li>username</li>
+            <li>email</li>
+            <li>job title </li>
+            <li>job title </li>
+            <li>year salary: it will be used to compute the shares for each contribution. </li>
+        </ul>
+        <p>Initially the amount of shares from a created user is 0. The moment he/she starts contributing the total
+            shares will be the sum of all contributions he/she made </p>
+        <br>
+        <h4> c. Contributions</h4>
+        <br>
+        <p> A contribution is an action you or any team member did to add value to the project. For now there is only
+            two types of contributions: time or money.
+        </p>
+        <br>
+        <h5>Timed contributions</h5>
+        <p>A timed contribution is transformed into shares with the following formula:</p>
+        <p><samp> hourly_rate = yearly_salary_of_a_user / 2000 </samp> </p>
+        <p>(since it is considered that a regular employee works 2000h a
+            year)
+        </p>
+        <p> <samp> shares = project_non_cash_multiplier * time_spent_on_project (in h) * hourly_rate</samp> </p>
+        <br>
+        <h5>Expenses contributions</h5>
+        <p>A money contribution is transformed into shares with the following formula:</p>
+        <p><samp>shares = project_cash_multiplier * amount_of_money</samp> </p>
+        <br>
+        <p>As you may have observed in the Share distribution tab, by the default the cash multiplier is higher than the
+            non cash multiplier. This seems logical since you are investing real money in a project that may never see
+            the light. </p>
+        <p>However this is not fixed, and you can always change those values to the ones you define within your team</p>
+        <br>
+        <h4>d. Shares distribution </h4>
+        <br>
+        <p>The sum of all shares from the contributions makes the total shares the company has. Since each owner has
+            it's own shares, the percentage of ownership of the project is actually the shares of the user divided by
+            the total shares.</p>
+        <p> You can actually see this distribution in the share distribution tab.</p>
+        <br>
+        <h2>Conclusion</h2>
+        <br>
+        <p>Share Splitter aims at helping any team in the initial phase of creating a startup.</p>
+        <p>
+            It helps the team to create a fair equity distribution determided by the engagement of each team member</p>
+
+
+
+
+    </div>
+</div>
+
+{% endblock content %}

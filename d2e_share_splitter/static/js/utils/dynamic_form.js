@@ -5,5 +5,15 @@ function dynamicFormRequest() {
   postRequest(urlUpdateForm, formData).then((response) => {
     $("#formCreate").html(response);
     hideLoadingShowModal("modalContentCreate", "modalInnerLoading");
+    (error) => {
+      $("#formCreate").html(error.data);
+      hideLoadingShowModal(`modalContentCreate`, `modalInnerLoading`);
+    };
   });
+}
+
+function validateAndPostForm() {
+  if (isValidForm("formCreate")) {
+    hideModalShowLoading(`modalContentCreate`, `modalInnerLoading`);
+  }
 }
