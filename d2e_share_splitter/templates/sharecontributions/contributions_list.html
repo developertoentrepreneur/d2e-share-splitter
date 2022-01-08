@@ -43,7 +43,7 @@ f
       </div>
       {% include "atoms/pagination.html" with is_paginated=is_paginated page_obj=page_obj paginator=paginator%}
       <button type="button" class=" btn btn-primary form-control" data-bs-toggle="modal"
-        data-bs-target="#modalCreateDynamic">
+        data-bs-target="#modalCreateDynamic" click="hideLoadingShowModal(`modalContentCreate`, `modalInnerLoading`)">
         New Contribution
       </button>
     </div>
