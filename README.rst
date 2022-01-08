@@ -15,7 +15,7 @@ A tool to split shares dynamically
 What is this project about
 --------
 
-Share Splitter is a small framework to help your tartup organize your company shares dynamically. 
+Share Splitter is a small framework to help your tartup organize your company shares dynamically.
 
 Built within the django framework, Share Splitter allows you to:
 
