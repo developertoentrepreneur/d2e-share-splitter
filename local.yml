@@ -6,10 +6,10 @@ volumes:
 
 services:
   django:
-    build:
-      context: .
-      dockerfile: ./compose/local/django/Dockerfile
-    image: d2e_share_splitter_local_django
+    # build:
+    #   context: .
+    #   dockerfile: ./compose/local/django/Dockerfile
+    image: alvarolloret/d2e-sharesplitter-django:latest
     container_name: django
     depends_on:
       - postgres
