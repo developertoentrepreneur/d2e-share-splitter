@@ -6,39 +6,47 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserLog',
+            name="UserLog",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('type', models.CharField(default='creation', max_length=1024)),
-                ('user', models.CharField(max_length=1024)),
-                ('details', models.CharField(max_length=1024)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                ("type", models.CharField(default="creation", max_length=1024)),
+                ("user", models.CharField(max_length=1024)),
+                ("details", models.CharField(max_length=1024)),
             ],
         ),
         migrations.AddField(
-            model_name='user',
-            name='jobTitle',
-            field=models.CharField(default='hello', max_length=1024),
+            model_name="user",
+            name="jobTitle",
+            field=models.CharField(default="hello", max_length=1024),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='user',
-            name='slices',
+            model_name="user",
+            name="slices",
             field=models.FloatField(default=0),
         ),
         migrations.AddField(
-            model_name='user',
-            name='well',
+            model_name="user",
+            name="well",
             field=models.FloatField(default=0),
         ),
         migrations.AddField(
-            model_name='user',
-            name='yearSalary',
+            model_name="user",
+            name="yearSalary",
             field=models.IntegerField(default=0),
         ),
     ]

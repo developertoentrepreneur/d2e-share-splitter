@@ -19,9 +19,7 @@ class ProjectRetrieveUpdateView(ModalRetrieveUpdateView):
         response = {
             "project": project,
             "serializer": self.get_serializer(project),
-            "url_edit": reverse(
-                "shareconf:form", kwargs={"project_pk": project.pk}
-            ),
+            "url_edit": reverse("shareconf:form", kwargs={"project_pk": project.pk}),
             "title": f"Update project {project.name}",
         }
         return Response(response)

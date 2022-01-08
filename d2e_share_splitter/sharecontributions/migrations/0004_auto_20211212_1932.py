@@ -9,24 +9,30 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('shareconf', '0003_auto_20211208_1300'),
-        ('sharecontributions', '0003_auto_20211211_2307'),
+        ("shareconf", "0003_auto_20211208_1300"),
+        ("sharecontributions", "0003_auto_20211211_2307"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='contribution',
-            name='contribType',
-            field=models.CharField(choices=[('time', 'Time'), ('expenses', 'Expenses')], max_length=1024),
+            model_name="contribution",
+            name="contribType",
+            field=models.CharField(
+                choices=[("time", "Time"), ("expenses", "Expenses")], max_length=1024
+            ),
         ),
         migrations.AlterField(
-            model_name='contribution',
-            name='projectType',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shareconf.project'),
+            model_name="contribution",
+            name="projectType",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="shareconf.project"
+            ),
         ),
         migrations.AlterField(
-            model_name='contribution',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="contribution",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

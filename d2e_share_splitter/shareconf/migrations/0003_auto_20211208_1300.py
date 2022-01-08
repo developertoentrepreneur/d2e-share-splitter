@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shareconf', '0002_auto_20211208_1258'),
+        ("shareconf", "0002_auto_20211208_1258"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='project',
-            old_name='cashMultiplier',
-            new_name='cash_multiplier',
+            model_name="project",
+            old_name="cashMultiplier",
+            new_name="cash_multiplier",
         ),
         migrations.RenameField(
-            model_name='project',
-            old_name='nonCashMultiplier',
-            new_name='non_cash_multiplier',
+            model_name="project",
+            old_name="nonCashMultiplier",
+            new_name="non_cash_multiplier",
         ),
     ]
