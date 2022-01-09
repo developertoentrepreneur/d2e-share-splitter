@@ -61,6 +61,10 @@ COPY ./compose/local/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
+COPY ./compose/production/django/start /start_prod
+RUN sed -i 's/\r$//g' /start_prod
+RUN chmod +x /start_prod
+
 
 
 # copy application code to WORKDIR
