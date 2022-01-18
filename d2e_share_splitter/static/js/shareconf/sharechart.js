@@ -10,7 +10,7 @@ function drawChart() {
     title: "ShareDistribution Chart division",
   };
 
-  var chart = new google.visualization.ShareDistributionChart(
+  var chart = new google.visualization.PieChart(
     document.getElementById("sharechart")
   );
 

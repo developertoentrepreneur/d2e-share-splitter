@@ -31,9 +31,11 @@ f
             <td name="date">{{contrib.date}}</td>
             <td name="details">{{contrib.details}}</td>
             <td name="shares">{{contrib.shares}}</td>
-            <td align="center">
-              <button class="btn btn-danger form-control" onClick="deleteContrib({{contrib.id}})">
-                <span class="glyphicon glyphicon-trash"></span>
+            <td>
+              <button class="btn btn-danger form-control"
+                onClick="deleteInstance({{contrib.id}}, `{{contrib.details}}`)" data-bs-toggle="modal"
+                data-bs-target="#modalDelete">
+                <i class="bi bi-trash"></i>
               </button>
             </td>
           </tr>
@@ -64,6 +66,7 @@ f
   {% block javascript %}
   <script type="text/javascript">
     var url_edit = '{% url "shareconf:form" "0000" %}'
+    var url_delete = '{% url "sharecontributions:contrib_delete" "0000" %}'
     var urlUpdateForm = '{% url "sharecontributions:contrib_form_update" %}'
   </script>
   <script defer src="{% static 'js/utils/dynamic_form.js' %}"></script>
