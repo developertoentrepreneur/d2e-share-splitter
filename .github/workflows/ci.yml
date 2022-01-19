@@ -87,7 +87,6 @@ jobs:
         run: |
           echo "A initial message"
           docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
-          docker swarm  -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
           echo "Final message"
       
       - name: executing remote ssh commands using ssh key
