@@ -8,9 +8,7 @@ urlpatterns = [
     # Django Ajax CRUD Operations
     path("contribs/", views.ContribsView.as_view(), name="list_contribs"),
     # path('contribs/log', views.ContribsLog.as_view(), name='log_contribs'),
-    path(
-        "contribs/create/", views.CreateContrib.as_view(), name="contrib_create"
-    ),
+    path("contribs/create/", views.CreateContrib.as_view(), name="contrib_create"),
     path(
         "contrib/<int:pk>/delete/",
         views.DeleteContrib.as_view(),
