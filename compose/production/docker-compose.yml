@@ -1,0 +1,48 @@
+version: "3.5"
+
+networks:
+  web:
+    external: true
+    name: web
+  internal:
+    name: internal
+    driver: overlay
+
+services:
+  sharesplitter:
+    image: ${IMAGE_NAME}
+    command: /start_prod
+
+    deploy:
+      labels:
+        - traefik.http.routers.sharesplitter.rule=Host(`sharesplitter.developertoentrepreneur.com`)
+        - traefik.http.routers.sharesplitter.tls=true
+        - traefik.http.routers.sharesplitter.tls.certresolver=lets-encrypt
+        - traefik.http.services.sharesplitter.loadbalancer.server.port=5000
+    networks:
+      - internal
+      - web
+    environment:
+      # DJANGO
+      DJANGO_SETTINGS_MODULE: config.settings.production
+      DJANGO_ALLOWED_HOSTS: sharesplitter.developertoentrepreneur.com
+      DJANGO_SECURE_SSL_REDIRECT: false
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_ADMIN_URL: ${DJANGO_ADMIN_URL}
+      WEB_CONCURRENCY: 4
+      REDIS_URL: redis://redis:6379/0
+      # POSTGRES
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_URL: ${DATABASE_URL}
+      # S3 BUCKET
+      DJANGO_AWS_ACCESS_KEY_ID: ${DJANGO_AWS_ACCESS_KEY_ID}
+      DJANGO_AWS_SECRET_ACCESS_KEY: ${DJANGO_AWS_SECRET_ACCESS_KEY}
+      DJANGO_AWS_STORAGE_BUCKET_NAME: ${DJANGO_AWS_STORAGE_BUCKET_NAME}
+      DJANGO_AWS_S3_REGION_NAME: ${DJANGO_AWS_S3_REGION_NAME}
+      # MAILGUN
+      MAILGUN_API_KEY: ${MAILGUN_API_KEY}
+      MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}

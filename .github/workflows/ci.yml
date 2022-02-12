@@ -11,7 +11,7 @@ on:
     paths-ignore: [ "docs/**" ]
 
   push:
-    branches: [ "master", "main", "registry" ]
+    branches: [ "master", "main", "deploy-from-actions" ]
     paths-ignore: [ "docs/**" ]
 
 
@@ -78,3 +78,36 @@ jobs:
           file: ./compose/local/django/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USER }}/d2e-sharesplitter-django:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login and deploy to swarm
+        shell: bash
+        run: |
+          echo "A initial message"
+          docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+          echo "Final message"
+      
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_MANAGER_IP }}
+          username: ${{ secrets.HOST_MANAGER_USERNAME }}
+          key: ${{ secrets.HOST_MANAGER_KEY }}
+          # port: ${{ secrets.HOST_MANAGER_PORT }}
+          script: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+
+# .deploy:
+#   stage: deploy
+#   tags:
+#     - deploy
+#   before_script:
+#     #install package envsubst
+#     - apk update && apk add gettext
+#   script:
+#     - echo "Deploying application..."
+#     - docker login -u ortswarm -p $ORTSWARMGITLABPULLREGISTRY $CI_REGISTRY
+#     - sh .ci/network.sh
+#     - sh .ci/deploy.sh
+#     - echo "Application successfully deployed."
