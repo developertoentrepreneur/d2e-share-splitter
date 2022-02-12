@@ -36,7 +36,7 @@ django-coverage-plugin==2.0.2  # https://github.com/nedbat/django_coverage_plugi
 pytest-django==4.4.0  # https://github.com/pytest-dev/pytest-django
 
 
-### INCLUDING ALL THE OTHER INSTALLS IN LOCAL 
+### INCLUDING ALL THE OTHER INSTALLS IN LOCAL
 ### THIS IS BECAUSE THE REGISTRY USES LOCAL
 
 gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
